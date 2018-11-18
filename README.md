@@ -7,16 +7,18 @@ Boilertemplate derivado do react-create-app, com algumas modificações, entre e
 - ESLint (Airbnb)
 - Prettier
 - Arquitetura de pastas
+- Docker
 
 ## Configuração
 
-Para utilizar esse boilertemplate siga os seguintes passos (Pré-requisito: Git e npm/yarn)
+Para utilizar esse boilertemplate siga os seguintes passos (Pré-requisito: Git, npm/yarn, o HyperV com uma maquina virtual e o Docker)
 
 1. Abra o seu terminal de preferência e vá a pasta que deseja colocar o projeto
 2. Clone o repósitorio com o comando "_git clone https://github.com/baraodev/react-boilertemplate_"
-3. Baixe as dependências com "_npm install_" ou "_yarn install_"
-4. Suba o servidor com "_npm start_" ou "_yarn start_"
-5. Agora é só codar!
+3. Crie uma maquina virtual com o comando "_docker-machine create -d hyperv univesp_"
+4. Utilize o comando para preparar o ambiente "_docker-machine env univesp_"
+5. Construa e suba os serviços com "_docker-compose up -d --build_"
+6. Agora é só codar! Para ver o app basta entrar em "_http://localhost:3000_"
 
 ## Explicação de pastas
 
@@ -41,3 +43,5 @@ Pasta onde ficará armazenado as estruturas das páginas (As páginas serão con
 #### services
 
 Pasta que fica encarregada de se conectar com serviços, por exemplo, uma API.
+
+Qualquer dúvida só procurar por Marco Barão :-D
