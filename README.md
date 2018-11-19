@@ -11,7 +11,7 @@ Boilertemplate derivado do react-create-app, com algumas modificações, entre e
 
 ## Configuração
 
-Para utilizar esse boilertemplate siga os seguintes passos (Pré-requisito: Git, npm/yarn, o HyperV com uma maquina virtual e o Docker)
+Para utilizar esse boilertemplate siga os seguintes passos (Pré-requisito: Git, npm/yarn, o HyperV com uma switch e o Docker)
 
 1. Abra o seu terminal de preferência e vá a pasta que deseja colocar o projeto
 2. Clone o repósitorio com o comando "_git clone https://github.com/baraodev/react-boilertemplate_"
