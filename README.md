@@ -32,6 +32,10 @@ Onde fica a saída principal da aplicação (index.html) e o favicon.
 
 Onde fica o código fonte da aplicação, quase tudo que você codar vai ficar por aqui.
 
+#### assets
+
+Nessa pasta ficará todos os arquivos estaticos, como por exemplo, images e estilos globais.
+
 #### components
 
 Componentes são elementos menores visiveis na interface, por exemplo, um card, um formulário etc.
