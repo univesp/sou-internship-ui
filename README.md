@@ -2,7 +2,7 @@
 
 Boilertemplate derivado do react-create-app, com algumas modificações, entre elas:
 
-- SASS
+- SASS / Styled components
 - EditorConfig
 - ESLint (Airbnb)
 - Prettier
