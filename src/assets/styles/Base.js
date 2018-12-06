@@ -5,6 +5,7 @@ const Base = createGlobalStyle`
   font-size: 16px;
   font-family: 'Ubuntu', sans-serif;
   letter-spacing: 0.2vw;
+  box-sizing: border-box;
 `;
 
 export default Base;
