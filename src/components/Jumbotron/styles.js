@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const Section = styled.section`
   display: flex;
-  width: calc(100vw - 80px);
+  width: 100%;
   height: 130px;
   padding: 3rem;
   background-color: #162834;
