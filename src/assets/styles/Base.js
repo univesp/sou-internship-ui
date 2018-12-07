@@ -6,11 +6,12 @@ const Base = createGlobalStyle`
   html {
     font-size: 16px;
     font-family: 'Barlow', sans-serif;
-    letter-spacing: 0.2vw;
+    letter-spacing: 0.1vw;
     box-sizing: border-box;
   }
 
   #root {
+    height: 100%;
     display: grid;
     grid-template-columns: 80px 1fr 1fr;
     grid-template-rows: 80px 130px 1fr 1fr;
