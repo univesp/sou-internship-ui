@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const Header = styled.header`
   display: flex;
-  height: 10vh;
+  width: 100%;
+  height: 80px;
   background-color: #627981;
   justify-content: space-between;
   align-items: center;

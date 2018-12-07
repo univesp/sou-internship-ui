@@ -13,7 +13,7 @@ const Base = createGlobalStyle`
   #root {
     display: grid;
     grid-template-columns: 80px 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: 80px 130px 1fr 1fr;
     grid-template-areas:
     "header header header"
     "sidebar jumbotron jumbotron"
