@@ -17,6 +17,7 @@ const Container = styled.div`
 `;
 
 const Text = styled.p`
+  font-family: 'Open-sans', sans-serif;
   font-size: 1.2rem;
   text-align: center;
 `;

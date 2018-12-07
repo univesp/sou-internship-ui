@@ -3,11 +3,10 @@ import styled from 'styled-components';
 const Header = styled.header`
   display: flex;
   width: 100%;
-  height: 80px;
   background-color: #627981;
   justify-content: space-between;
   align-items: center;
-  padding: 0 5vw;
+  padding: 30px 1.5vw;
   grid-area: header;
 `;
 
