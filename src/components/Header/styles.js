@@ -7,6 +7,7 @@ const Header = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 5vw;
+  grid-area: header;
 `;
 
 const Logo = styled.img`
