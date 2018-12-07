@@ -15,7 +15,9 @@ const Sidebar = () => (
     <Actions>
       <Action icon={Course}>Percursos</Action>
       <Action icon={Collections}>Coleções</Action>
-      <Action icon={Collaboration}>Colaboração</Action>
+      <Action icon={Collaboration} active>
+        Colaboração
+      </Action>
       <Action icon={Avaliations}>Avaliações</Action>
       <Action icon={Calendar}>Calendário</Action>
       <Action icon={Communication}>Comunicação</Action>

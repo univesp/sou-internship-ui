@@ -26,6 +26,7 @@ const Action = styled.li`
   width: 60px;
   height: 60px;
   text-indent: -9999px;
+  background-color: ${props => (props.active ? '#911b28' : 'transparent')};
   background-image: url(${props => props.icon});
   background-repeat: no-repeat;
   background-origin: content-box;
