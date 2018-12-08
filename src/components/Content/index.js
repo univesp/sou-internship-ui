@@ -1,20 +1,68 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import Jumbotron from '../Jumbotron';
 import Probation from '../../pages/Probation';
 import Regulation from '../../pages/Regulation';
 
 import Main from './styles';
+import Avaliations from '../../assets/imgs/avaliacoes.svg';
+
+const links = [
+  {
+    name: 'Auditoria',
+    active: false,
+    url: 'auditor'
+  },
+  {
+    name: 'Colação de Grau',
+    active: false,
+    url: 'collation'
+  },
+  {
+    name: 'Diplomas',
+    active: false,
+    url: 'diplomas'
+  },
+  {
+    name: 'Estágios',
+    active: true,
+    url: 'probation'
+  },
+  {
+    name: 'Ingresso',
+    active: false,
+    url: 'admission'
+  },
+  {
+    name: 'Vida Acadêmica',
+    active: false,
+    url: 'academic'
+  },
+  {
+    name: 'Prontuário',
+    active: false,
+    url: 'report'
+  },
+]
 
 const Content = () => (
-  <Main>
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/" component={Probation} />
-        <Route path="/aproveitamento" component={Regulation} />
-      </Switch>
-    </BrowserRouter>
-  </Main>
+  <Fragment>
+    <Jumbotron title="Apoio ao aluno" icon={Avaliations} links={links} />
+    <Main>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/probation" render={({ match: { url } }) => (
+            <Fragment>
+              <Route exact path={`${url}`} component={Probation} />
+              <Route path={`${url}/explotation`} component={Regulation} />
+              <Route path={`${url}/student`} component={Regulation} />
+            </Fragment>
+          )} />
+        </Switch>
+      </BrowserRouter>
+    </Main>
+  </Fragment>
 );
 
 export default Content;

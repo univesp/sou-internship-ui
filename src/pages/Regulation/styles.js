@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 
+import { Link } from 'react-router-dom';
+
 const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
   padding: 1rem;
+  flex-direction: column;
+`;
+
+const SplitContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
 `;
 
 const SplitLeft = styled.div`
@@ -16,6 +25,7 @@ const SplitLeft = styled.div`
 const SplitRight = styled.div`
   width: calc(70% - 1rem);
   height: 100%;
+  padding: 0 2rem;
   border-left: 1px dotted #000;
 `;
 
@@ -24,6 +34,10 @@ const Title = styled.h2`
   font-size: 1.6rem;
   text-transform: uppercase;
 `;
+
+const Text = styled.p`
+  font-size: 1rem;
+`
 
 const OrderedList = styled.ol`
   list-style-type: upper-roman;
@@ -60,6 +74,7 @@ const Pdf = styled.img`
 const TextPdf = styled.a`
   display: inline-flex;
   margin-top: 1rem;
+  margin-left: 1rem;
   text-decoration: none;
   align-items: center;
   span {
@@ -69,14 +84,28 @@ const TextPdf = styled.a`
   }
 `;
 
+const Agreement = styled(Link)`
+  align-self: flex-end;
+  display: block;
+  padding: 1.5rem 1rem;
+  margin-top: 1rem;
+  border: 1px solid #d4343f;
+  color: #d4343f;
+  text-transform: uppercase;
+  text-decoration: none;
+`
+
 export {
   Container,
+  SplitContainer,
   SplitLeft,
   SplitRight,
   Title,
+  Text,
   OrderedList,
   UnorderedList,
   Item,
   Pdf,
-  TextPdf
+  TextPdf,
+  Agreement
 };

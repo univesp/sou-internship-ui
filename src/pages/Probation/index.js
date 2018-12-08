@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Container, Text, Actions, Action } from './styles';
 
-const Probation = () => (
-  <Container>
-    <Text>Você não possui nenhum estágio cadastrado.</Text>
-    <Actions>
-      <Action to="/aproveitamento">Aproveitamento de horas de estágio</Action>
-      <Action to="/" hidden>
-        Incluir novo processo de estágio
-      </Action>
-    </Actions>
-  </Container>
+const Probation = ({ match: {url} }) => (
+  <Fragment>
+    <Container>
+      <Text>Selecione o processo que quer iniciar:</Text>
+      <Actions>
+        <Action to={`${url}/explotation`}>Aproveitamento de horas de estágio</Action>
+        <Action to={`${url}`} disabled>
+          Incluir novo processo de estágio
+        </Action>
+      </Actions>
+    </Container>
+  </Fragment>
 );
 
 export default Probation;
