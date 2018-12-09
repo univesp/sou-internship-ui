@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Jumbotron from '../Jumbotron';
 import Probation from '../../pages/Probation';
 import Regulation from '../../pages/Regulation';
+import StudentForm from '../../pages/StudentForm';
 
 import Main from './styles';
 import Avaliations from '../../assets/imgs/avaliacoes.svg';
@@ -12,37 +13,37 @@ const links = [
   {
     name: 'Auditoria',
     active: false,
-    url: 'auditor'
+    url: '/auditor'
   },
   {
     name: 'Colação de Grau',
     active: false,
-    url: 'collation'
+    url: '/collation'
   },
   {
     name: 'Diplomas',
     active: false,
-    url: 'diplomas'
+    url: '/diplomas'
   },
   {
     name: 'Estágios',
     active: true,
-    url: 'probation'
+    url: '/probation'
   },
   {
     name: 'Ingresso',
     active: false,
-    url: 'admission'
+    url: '/admission'
   },
   {
     name: 'Vida Acadêmica',
     active: false,
-    url: 'academic'
+    url: '/academic'
   },
   {
     name: 'Prontuário',
     active: false,
-    url: 'report'
+    url: '/report'
   },
 ]
 
@@ -56,7 +57,7 @@ const Content = () => (
             <Fragment>
               <Route exact path={`${url}`} component={Probation} />
               <Route path={`${url}/explotation`} component={Regulation} />
-              <Route path={`${url}/student`} component={Regulation} />
+              <Route path={`${url}/student/form`} component={StudentForm} />
             </Fragment>
           )} />
         </Switch>

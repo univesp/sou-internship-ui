@@ -72,7 +72,7 @@ O estágio supervisionado obrigatório deve ser realizado, preferencialmente, em
         </Text>
       </SplitRight>
     </SplitContainer>
-    <Agreement to="student">Eu concordo</Agreement>
+    <Agreement to="student/form">Eu concordo</Agreement>
   </Container>
 );
 
