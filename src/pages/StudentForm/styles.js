@@ -16,7 +16,7 @@ const Title = styled.h2`
 const Subtitle = styled.h4`
   font-size: 1.2rem;
   text-transform: uppercase;
-  margin: 0;
+  margin: 0 0 5vh;
 `;
 
 const Forms = styled(Form)``;

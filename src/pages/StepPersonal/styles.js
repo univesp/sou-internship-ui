@@ -13,7 +13,9 @@ const Row = styled.div`
 const Col = styled.div`
   width: 100%;
   height: 100%;
-  padding: 15px;
+  padding: 10px;
+  margin: 2px;
+  border: 1px solid rgb(235, 241, 242);
 `;
 
 const Datum = styled.label`
