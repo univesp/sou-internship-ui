@@ -38,16 +38,14 @@ const stepper = [
     icon: Report
   }
 ];
-
-const steps = [
-  <StepPersonal />,
-  <StepGrantor />
-  // <StepDocuments />,
-  // <StepSummary />
-];
 class StudentForm extends Component {
   state = {
-    step: 0
+    step: 0,
+    options: [
+      { value: 1, label: 'Univesidade de São Paulo' },
+      { value: 2, label: 'Universidade da Bahia' },
+      { value: 3, label: 'Universidade do Paraná' }
+    ]
   };
 
   previousStep = () => {
@@ -65,7 +63,13 @@ class StudentForm extends Component {
     console.log('Values: ', values);
   };
   render() {
-    const { step } = this.state;
+    const { step, options } = this.state;
+    const steps = [
+      <StepPersonal />,
+      <StepGrantor options={options} />
+      // <StepDocuments />,
+      // <StepSummary />
+    ];
     return (
       <Container>
         <Stepper step={step} steps={stepper} />

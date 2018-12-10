@@ -1,4 +1,6 @@
 import React, { Fragment } from 'react';
+import Select from 'react-select';
+
 
 import {
   Title,
@@ -10,13 +12,23 @@ import {
   HorizontalDivider
 } from './styles';
 
-const StepGrantor = () => (
+const StepGrantor = ({options}) => (
   <Fragment>
     <Title>Dados da Instituição Concedente</Title>
     <Subtitle>Busque a empresa ou cadastre uma nova</Subtitle>
     <Row bottom>
       <Col>
-        <Field name="selectGrantor" />
+        <Field name="grantorSelected" component={
+          ({field, form}) => (
+          <Select
+            options={options}
+            name={field.name}
+            value={options ? options.find(option => option.value === field.value) : ''}
+            onChange={(option) => form.setFieldValue(field.name, option.value)}
+            isClearable
+            onBlur={field.onBlur}
+            />)
+        } />
       </Col>
     </Row>
     <Row>
