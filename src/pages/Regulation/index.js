@@ -65,10 +65,25 @@ const Regulation = () => (
       <SplitRight>
         <Title>Regulamento de estágio das licenciaturas</Title>
         <Text>
-        O presente regulamento normatiza as dinâmicas e processos envolvidos no estágio supervisionado obrigatório e não obrigatório, para os seguintes cursos:
-Licenciatura em Matemática; Licenciatura em Química; Licenciatura em Física; Licenciatura em Biologia; Licenciatura em Pedagogia.
-Estágio é o ato educativo escolar supervisionado, desenvolvido em ambiente de trabalho, que visa preparar o estudante para a sua futura atividade profissional. A especificidade de cada estágio en-contra-se no Projeto Pedagógico de cada curso. O estágio visa ao aprendizado de competências próprias da profissão e ã contextualização curricular, objetivando o desenvolvimento do educando para a vida cidadã e para o trabalho (8 r do ao. r da Lei 11.788/2008).
-O estágio supervisionado obrigatório deve ser realizado, preferencialmente, em ambientes públi-cos, e caracteriza-se por atividades educacionais que articulem intrinsecamente a prática e os con-teúdos da formação acadêmica, conforme preconiza o Parecer 28/2001.0 estágio tem a carga ho-rária mínima de 400 horas, conforme a Resolução CNE/CP 1/2002, que estão distribuídas na matriz curricular dos cursos de Licenciatura, em disciplinas obrigatórias, orientadas por um supervisor.
+          O presente regulamento normatiza as dinâmicas e processos envolvidos
+          no estágio supervisionado obrigatório e não obrigatório, para os
+          seguintes cursos: Licenciatura em Matemática; Licenciatura em Química;
+          Licenciatura em Física; Licenciatura em Biologia; Licenciatura em
+          Pedagogia. Estágio é o ato educativo escolar supervisionado,
+          desenvolvido em ambiente de trabalho, que visa preparar o estudante
+          para a sua futura atividade profissional. A especificidade de cada
+          estágio en-contra-se no Projeto Pedagógico de cada curso. O estágio
+          visa ao aprendizado de competências próprias da profissão e ã
+          contextualização curricular, objetivando o desenvolvimento do educando
+          para a vida cidadã e para o trabalho (8 r do ao. r da Lei
+          11.788/2008). O estágio supervisionado obrigatório deve ser realizado,
+          preferencialmente, em ambientes públi-cos, e caracteriza-se por
+          atividades educacionais que articulem intrinsecamente a prática e os
+          con-teúdos da formação acadêmica, conforme preconiza o Parecer
+          28/2001.0 estágio tem a carga ho-rária mínima de 400 horas, conforme a
+          Resolução CNE/CP 1/2002, que estão distribuídas na matriz curricular
+          dos cursos de Licenciatura, em disciplinas obrigatórias, orientadas
+          por um supervisor.
         </Text>
       </SplitRight>
     </SplitContainer>

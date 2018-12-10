@@ -37,7 +37,7 @@ const Title = styled.h2`
 
 const Text = styled.p`
   font-size: 1rem;
-`
+`;
 
 const OrderedList = styled.ol`
   list-style-type: upper-roman;
@@ -87,13 +87,13 @@ const TextPdf = styled.a`
 const Agreement = styled(Link)`
   align-self: flex-end;
   display: block;
-  padding: 1.5rem 1rem;
+  padding: 0.75rem 1rem;
   margin-top: 1rem;
   border: 1px solid #d4343f;
   color: #d4343f;
   text-transform: uppercase;
   text-decoration: none;
-`
+`;
 
 export {
   Container,
