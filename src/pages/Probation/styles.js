@@ -1,13 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   display: flex;
   position: absolute;
-  width: 750px;
-  height: 400px;
-  border: 1px solid #000;
+  padding: 10rem 8rem;
+  border: 1px solid rgba(3, 3, 3, 0.1);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -17,8 +16,10 @@ const Container = styled.div`
 `;
 
 const Text = styled.p`
+  font-family: 'Open-sans', sans-serif;
   font-size: 1.2rem;
   text-align: center;
+  color: #b13239;
 `;
 
 const Actions = styled.div`
@@ -27,7 +28,11 @@ const Actions = styled.div`
 `;
 
 const Action = styled(Link)`
-  display: ${props => (props.hidden ? 'none' : 'inline-block')};
+  ${props => (props.disabled && css`
+    opacity: 0.2;
+    cursor: not-allowed;
+  `)};
+  display: inline-block;
   width: 280px;
   padding: 1rem;
   background-color: #b13239;

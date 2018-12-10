@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 const Aside = styled.aside`
   width: 80px;
-  height: 90vh;
+  min-height: calc(100vh - 80px);
+  height: 100%;
   background-color: #b13239;
   grid-area: sidebar;
 `;
