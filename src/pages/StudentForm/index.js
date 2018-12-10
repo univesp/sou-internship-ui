@@ -15,24 +15,27 @@ import {
   GroupButton,
   Button
 } from './styles';
-import User from '../../assets/imgs/usuario.svg';
+import PersonalData from '../../assets/imgs/dadospessoais.svg';
+import CourseData from '../../assets/imgs/dadosdocurso.svg';
+import Documents from '../../assets/imgs/documentos.svg';
+import Report from '../../assets/imgs/relatorio.svg';
 
 const stepper = [
   {
     name: 'Dados pessoais',
-    icon: User
+    icon: PersonalData
   },
   {
     name: 'Concedente',
-    icon: 'Suitcase'
+    icon: CourseData
   },
   {
     name: 'Documentos',
-    icon: 'StepDocuments'
+    icon: Documents
   },
   {
     name: 'Resumo',
-    icon: 'StepSummary'
+    icon: Report
   }
 ];
 

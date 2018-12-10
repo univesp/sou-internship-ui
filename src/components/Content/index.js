@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Jumbotron from '../Jumbotron';
-import Probation from '../../pages/Probation';
+import Internship from '../../pages/Internship';
 import Regulation from '../../pages/Regulation';
 import StudentForm from '../../pages/StudentForm';
 
@@ -28,7 +28,7 @@ const links = [
   {
     name: 'Estágios',
     active: true,
-    url: '/probation'
+    url: '/internship'
   },
   {
     name: 'Ingresso',
@@ -53,9 +53,9 @@ const Content = () => (
     <Main>
       <BrowserRouter>
         <Switch>
-          <Route path="/probation" render={({ match: { url } }) => (
+          <Route path="/internship" render={({ match: { url } }) => (
             <Fragment>
-              <Route exact path={`${url}`} component={Probation} />
+              <Route exact path={`${url}`} component={Internship} />
               <Route path={`${url}/explotation`} component={Regulation} />
               <Route path={`${url}/student/form`} component={StudentForm} />
             </Fragment>

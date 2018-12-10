@@ -31,13 +31,13 @@ const StepGrantor = () => (
       <Col>
         <Label>
           Telefone 1
-          <Field name="institution.phone[]" />
+          <Field name="institution.phone[0]" />
         </Label>
       </Col>
       <Col>
         <Label>
           Telefone 2
-          <Field name="institution.phone[]" />
+          <Field name="institution.phone[1]" />
         </Label>
       </Col>
       <Col>
@@ -100,13 +100,13 @@ const StepGrantor = () => (
       <Col>
         <Label>
           Telefone 1
-          <Field name="responsible.phone[]" />
+          <Field name="responsible.phone[0]" />
         </Label>
       </Col>
       <Col>
         <Label>
           Telefone 2
-          <Field name="responsible.phone[]" />
+          <Field name="responsible.phone[1]" />
         </Label>
       </Col>
       <Col>
@@ -129,13 +129,13 @@ const StepGrantor = () => (
       <Col>
         <Label>
           Telefone 1
-          <Field name="regent.phone[]" />
+          <Field name="regent.phone[0]" />
         </Label>
       </Col>
       <Col>
         <Label>
           Telefone 2
-          <Field name="regent.phone[]" />
+          <Field name="regent.phone[1]" />
         </Label>
       </Col>
       <Col>
@@ -166,13 +166,13 @@ const StepGrantor = () => (
       <Col>
         <Label>
           Telefone 1
-          <Field name="advisor.phone[]" />
+          <Field name="advisor.phone[0]" />
         </Label>
       </Col>
       <Col>
         <Label>
           Telefone 2
-          <Field name="advisor.phone[]" />
+          <Field name="advisor.phone[1]" />
         </Label>
       </Col>
       <Col>
