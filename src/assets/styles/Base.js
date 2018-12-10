@@ -20,11 +20,10 @@ const Base = createGlobalStyle`
     height: 100%;
     display: grid;
     grid-template-columns: 80px 1fr 1fr;
-    grid-template-rows: 80px 130px 100%;
+    grid-template-rows: 80px 130px auto;
     grid-template-areas:
     "header header header"
     "sidebar jumbotron jumbotron"
-    "sidebar content content"
     "sidebar content content";
   }
 
