@@ -2,12 +2,14 @@ import React, { Fragment } from 'react';
 
 import { Container, Text, Actions, Action } from './styles';
 
-const Probation = ({ match: {url} }) => (
+const Internship = ({ match: { url } }) => (
   <Fragment>
     <Container>
       <Text>Selecione o processo que quer iniciar:</Text>
       <Actions>
-        <Action to={`${url}/explotation`}>Aproveitamento de horas de estágio</Action>
+        <Action to={`${url}/explotation`}>
+          Aproveitamento de horas de estágio
+        </Action>
         <Action to={`${url}`} disabled>
           Incluir novo processo de estágio
         </Action>
@@ -16,4 +18,4 @@ const Probation = ({ match: {url} }) => (
   </Fragment>
 );
 
-export default Probation;
+export default Internship;

@@ -22,7 +22,7 @@ const Jumbotron = ({ icon, title, links }) => (
 );
 
 Jumbotron.propTypes = {
-  icon: PropTypes.element.isRequired,
+  icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(
     PropTypes.shape({

@@ -28,10 +28,12 @@ const Actions = styled.div`
 `;
 
 const Action = styled(Link)`
-  ${props => (props.disabled && css`
-    opacity: 0.2;
-    cursor: not-allowed;
-  `)};
+  ${props =>
+    props.disabled &&
+    css`
+      opacity: 0.2;
+      cursor: not-allowed;
+    `};
   display: inline-block;
   width: 280px;
   padding: 1rem;

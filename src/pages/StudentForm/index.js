@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import Stepper from '../../components/Stepper';
 import StepPersonal from '../StepPersonal';
 import StepGrantor from '../StepGrantor';
-// import StepDocuments from '../StepDocuments';
+import StepDocuments from '../StepDocuments';
 // import StepSummary from '../StepSummary';
 
 import {
@@ -15,36 +15,37 @@ import {
   GroupButton,
   Button
 } from './styles';
-import User from '../../assets/imgs/usuario.svg';
+import PersonalData from '../../assets/imgs/dadospessoais.svg';
+import CourseData from '../../assets/imgs/dadosdocurso.svg';
+import Documents from '../../assets/imgs/documentos.svg';
+import Report from '../../assets/imgs/relatorio.svg';
 
 const stepper = [
   {
     name: 'Dados pessoais',
-    icon: User
+    icon: PersonalData
   },
   {
     name: 'Concedente',
-    icon: 'Suitcase'
+    icon: CourseData
   },
   {
     name: 'Documentos',
-    icon: 'StepDocuments'
+    icon: Documents
   },
   {
     name: 'Resumo',
-    icon: 'StepSummary'
+    icon: Report
   }
-];
-
-const steps = [
-  <StepPersonal />,
-  <StepGrantor />
-  // <StepDocuments />,
-  // <StepSummary />
 ];
 class StudentForm extends Component {
   state = {
-    step: 0
+    step: 0,
+    options: [
+      { value: 1, label: 'Univesidade de São Paulo' },
+      { value: 2, label: 'Universidade da Bahia' },
+      { value: 3, label: 'Universidade do Paraná' }
+    ]
   };
 
   previousStep = () => {
@@ -62,33 +63,79 @@ class StudentForm extends Component {
     console.log('Values: ', values);
   };
   render() {
-    const { step } = this.state;
+    const { step, options } = this.state;
     return (
       <Container>
         <Stepper step={step} steps={stepper} />
         <Title>Nome da Disciplina de Estágio</Title>
         <Subtitle>Semestre e ano de oferta</Subtitle>
-        <Formik onSubmit={this.submit}>
-          <Form>
-            {steps[step]}
-            <GroupButton>
-              {step ? (
-                <Button secondary onClick={this.previousStep}>
-                  Voltar
-                </Button>
-              ) : null}
-              {step === steps.length - 1 ? (
-                <Button primary type="submit">
-                  Concluir
-                </Button>
-              ) : (
-                <Button primary onClick={this.nextStep}>
-                  Próxima
-                </Button>
-              )}
-            </GroupButton>
-          </Form>
-        </Formik>
+        <Formik
+          onSubmit={this.submit}
+          initialValues={{
+            grantorSelected: {},
+            instituition: {
+              cnpj: '',
+              name: '',
+              phone: [],
+              fax: '',
+              cep: '',
+              street: '',
+              complement: '',
+              number: '',
+              city: '',
+              federatedState: ''
+            },
+            responsible: {
+              name: '',
+              phone: [],
+              email: ''
+            },
+            regent: {
+              name: '',
+              phone: [],
+              email: ''
+            },
+            advisor: {
+              name: '',
+              phone: [],
+              email: ''
+            },
+            files: {
+              work: {},
+              explotation: {},
+              activities: {}
+            }
+          }}
+          render={({ values, setFieldValue }) => {
+            const steps = [
+              <StepPersonal />,
+              <StepGrantor options={options} />,
+              <StepDocuments setFieldValue={setFieldValue} values={values} />
+              // <StepSummary />
+            ];
+            return (
+              <Form>
+                {steps[step]}
+                <GroupButton>
+                  {step ? (
+                    <Button secondary onClick={this.previousStep}>
+                      Voltar
+                    </Button>
+                  ) : null}
+                  {step === steps.length - 1 ? (
+                    <Button primary type="submit">
+                      Concluir
+                    </Button>
+                  ) : (
+                    <Button primary onClick={this.nextStep}>
+                      Próxima
+                    </Button>
+                  )}
+                </GroupButton>
+              </Form>
+            );
+          }}
+        />
       </Container>
     );
   }

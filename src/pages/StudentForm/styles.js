@@ -22,7 +22,7 @@ const Subtitle = styled.h4`
 const Forms = styled(Form)``;
 
 const GroupButton = styled.div`
-  margin-top: 3vh;
+  margin-top: 6vh;
   display: flex;
   justify-content: flex-end;
 `;
