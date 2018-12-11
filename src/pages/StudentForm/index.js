@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import Stepper from '../../components/Stepper';
 import StepPersonal from '../StepPersonal';
 import StepGrantor from '../StepGrantor';
-// import StepDocuments from '../StepDocuments';
+import StepDocuments from '../StepDocuments';
 // import StepSummary from '../StepSummary';
 
 import {
@@ -64,38 +64,78 @@ class StudentForm extends Component {
   };
   render() {
     const { step, options } = this.state;
-    const steps = [
-      <StepPersonal />,
-      <StepGrantor options={options} />
-      // <StepDocuments />,
-      // <StepSummary />
-    ];
     return (
       <Container>
         <Stepper step={step} steps={stepper} />
         <Title>Nome da Disciplina de Estágio</Title>
         <Subtitle>Semestre e ano de oferta</Subtitle>
-        <Formik onSubmit={this.submit}>
-          <Form>
-            {steps[step]}
-            <GroupButton>
-              {step ? (
-                <Button secondary onClick={this.previousStep}>
-                  Voltar
-                </Button>
-              ) : null}
-              {step === steps.length - 1 ? (
-                <Button primary type="submit">
-                  Concluir
-                </Button>
-              ) : (
-                <Button primary onClick={this.nextStep}>
-                  Próxima
-                </Button>
-              )}
-            </GroupButton>
-          </Form>
-        </Formik>
+        <Formik
+          onSubmit={this.submit}
+          initialValues={{
+            grantorSelected: {},
+            instituition: {
+              cnpj: '',
+              name: '',
+              phone: [],
+              fax: '',
+              cep: '',
+              street: '',
+              complement: '',
+              number: '',
+              city: '',
+              federatedState: ''
+            },
+            responsible: {
+              name: '',
+              phone: [],
+              email: ''
+            },
+            regent: {
+              name: '',
+              phone: [],
+              email: ''
+            },
+            advisor: {
+              name: '',
+              phone: [],
+              email: ''
+            },
+            files: {
+              work: {},
+              explotation: {},
+              activities: {}
+            }
+          }}
+          render={({ values, setFieldValue }) => {
+            const steps = [
+              <StepPersonal />,
+              <StepGrantor options={options} />,
+              <StepDocuments setFieldValue={setFieldValue} values={values} />
+              // <StepSummary />
+            ];
+            return (
+              <Form>
+                {steps[step]}
+                <GroupButton>
+                  {step ? (
+                    <Button secondary onClick={this.previousStep}>
+                      Voltar
+                    </Button>
+                  ) : null}
+                  {step === steps.length - 1 ? (
+                    <Button primary type="submit">
+                      Concluir
+                    </Button>
+                  ) : (
+                    <Button primary onClick={this.nextStep}>
+                      Próxima
+                    </Button>
+                  )}
+                </GroupButton>
+              </Form>
+            );
+          }}
+        />
       </Container>
     );
   }

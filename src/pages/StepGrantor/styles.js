@@ -47,8 +47,8 @@ const HorizontalDivider = styled.hr`
   width: 80%;
   margin: 5vh 0;
   height: 1px;
-  color: rgb(96, 121, 137);
-  background-color: rgb(96, 121, 137);
+  color: rgba(96, 121, 137, 0.3);
+  background-color: rgba(96, 121, 137, 0.3);
   border: none;
 `;
 

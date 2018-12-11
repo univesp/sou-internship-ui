@@ -11,6 +11,17 @@ import {
   HorizontalDivider
 } from './styles';
 
+const colourStyles = {
+  control: styles => ({ ...styles, backgroundColor: 'white' }),
+  option: styles => ({
+    ...styles,
+    color: 'black'
+  }),
+  input: styles => ({ ...styles }),
+  placeholder: styles => ({ ...styles }),
+  singleValue: styles => ({ ...styles })
+};
+
 const StepGrantor = ({ options }) => (
   <Fragment>
     <Title>Dados da Instituição Concedente</Title>
@@ -32,6 +43,7 @@ const StepGrantor = ({ options }) => (
               onChange={option =>
                 form.setFieldValue(field.name, option.value || null)
               }
+              styles={colourStyles}
               theme={theme => ({
                 ...theme,
                 borderRadius: 0,
@@ -50,6 +62,12 @@ const StepGrantor = ({ options }) => (
       </Col>
     </Row>
     <Row>
+      <Col width="22%">
+        <Label>
+          CNPJ
+          <Field name="institution.cnpj" />
+        </Label>
+      </Col>
       <Col>
         <Label>
           Nome
@@ -78,7 +96,7 @@ const StepGrantor = ({ options }) => (
       </Col>
     </Row>
     <Row>
-      <Col width="150px">
+      <Col width="15%">
         <Label>
           CEP
           <Field name="institution.cep" />
@@ -92,25 +110,25 @@ const StepGrantor = ({ options }) => (
           <Field name="institution.street" />
         </Label>
       </Col>
-      <Col width="350px">
+      <Col width="35%">
         <Label>
           Complemento
           <Field name="institution.complement" />
         </Label>
       </Col>
-      <Col width="100px">
+      <Col width="10%">
         <Label>
           Número
           <Field name="institution.number" />
         </Label>
       </Col>
-      <Col width="300px">
+      <Col width="30%">
         <Label>
           Cidade
           <Field name="institution.city" />
         </Label>
       </Col>
-      <Col width="70px">
+      <Col width="8%">
         <Label>
           UF
           <Field name="institution.federatedState" />
