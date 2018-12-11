@@ -5,7 +5,7 @@ import Stepper from '../../components/Stepper';
 import StepPersonal from '../StepPersonal';
 import StepGrantor from '../StepGrantor';
 import StepDocuments from '../StepDocuments';
-// import StepSummary from '../StepSummary';
+import StepSummary from '../StepSummary';
 
 import {
   Container,
@@ -110,8 +110,8 @@ class StudentForm extends Component {
             const steps = [
               <StepPersonal />,
               <StepGrantor options={options} />,
-              <StepDocuments setFieldValue={setFieldValue} values={values} />
-              // <StepSummary />
+              <StepDocuments setFieldValue={setFieldValue} values={values} />,
+              <StepSummary values={values} />
             ];
             return (
               <Form>

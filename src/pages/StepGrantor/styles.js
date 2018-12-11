@@ -15,7 +15,7 @@ const Subtitle = styled.h3`
 `;
 
 const Row = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   ${({ bottom }) =>
     bottom &&
