@@ -22,8 +22,15 @@ const Col = styled.div`
   width: ${({ width }) => width || '100%'};
   height: 100%;
   padding: 8px;
+  text-align: center;
   &:not(:last-of-type) {
     margin-right: 7%;
+  }
+  .react-pdf__Document {
+    display: inline;
+  }
+  .react-pdf__Page {
+    display: inline;
   }
 `;
 
