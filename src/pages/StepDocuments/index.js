@@ -14,7 +14,7 @@ import {
   Button
 } from './styles';
 import Upload from '../../assets/imgs/upload.svg';
-import Success from '../../assets/imgs/successo.svg';
+import Success from '../../assets/imgs/sucesso_upload.svg';
 
 const StepDocuments = ({ values, setFieldValue }) => (
   <Fragment>

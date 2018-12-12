@@ -3,6 +3,8 @@ import React, { Fragment } from 'react';
 import Document from '../../components/Document';
 import { Title, Subtitle, Row, Col, Data, Item, Datum } from './styles';
 
+const dict = {work: "Carteira de trabalho", explotation: 'Declaração', activities: 'Relatório de atividades'}
+
 const StepSummary = ({ values: { files } }) => (
   <Fragment>
     <Title>Resumo</Title>
@@ -160,7 +162,7 @@ const StepSummary = ({ values: { files } }) => (
     <Row width="100%">
       {Object.keys(files).map(file => (
         <Col>
-          <Document file={files[file]} />
+          <Document key={file} name={dict[file]} file={files[file]} />
         </Col>
       ))}
     </Row>

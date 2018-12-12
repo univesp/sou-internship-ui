@@ -26,12 +26,6 @@ const Col = styled.div`
   &:not(:last-of-type) {
     margin-right: 7%;
   }
-  .react-pdf__Document {
-    display: inline;
-  }
-  .react-pdf__Page {
-    display: inline;
-  }
 `;
 
 const Data = styled.ul`
