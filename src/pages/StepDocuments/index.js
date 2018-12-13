@@ -14,7 +14,7 @@ import {
   Button
 } from './styles';
 import Upload from '../../assets/imgs/upload.svg';
-import Success from '../../assets/imgs/successo.svg';
+import Success from '../../assets/imgs/sucesso_upload.svg';
 
 const StepDocuments = ({ values, setFieldValue }) => (
   <Fragment>
@@ -22,9 +22,16 @@ const StepDocuments = ({ values, setFieldValue }) => (
     <Row>
       <Col>
         <Dropzone
-          onDrop={acceptedFiles => {
-            setFieldValue('files.work', acceptedFiles);
+          accept="image/jpeg,image/jpg,image/png,image/bmp,application/pdf"
+          onDrop={([file, ...rest]) => {
+            setFieldValue(
+              'files.work',
+              Object.assign(file, {
+                preview: URL.createObjectURL(file)
+              })
+            );
           }}
+          multiple={false}
         >
           {({ getRootProps, getInputProps }) => (
             <DragDrop {...getRootProps()}>
@@ -35,7 +42,7 @@ const StepDocuments = ({ values, setFieldValue }) => (
                   JSON.stringify(values.files.work) !== '{}' ? Success : Upload
                 }
               />
-              <Field name="files.work" {...getInputProps()} />
+              <Field {...getInputProps()} />
               <Button>Procure no computador</Button>
               <Accepted>Arquivos aceitos: pdf, jpg, png, bmp</Accepted>
             </DragDrop>
@@ -44,9 +51,16 @@ const StepDocuments = ({ values, setFieldValue }) => (
       </Col>
       <Col>
         <Dropzone
-          onDrop={acceptedFiles => {
-            setFieldValue('files.explotation', acceptedFiles);
+          accept="image/jpeg,image/jpg,image/png,image/bmp,application/pdf"
+          onDrop={([file, ...rest]) => {
+            setFieldValue(
+              'files.explotation',
+              Object.assign(file, {
+                preview: URL.createObjectURL(file)
+              })
+            );
           }}
+          multiple={false}
         >
           {({ getRootProps, getInputProps }) => (
             <DragDrop {...getRootProps()}>
@@ -59,7 +73,7 @@ const StepDocuments = ({ values, setFieldValue }) => (
                     : Upload
                 }
               />
-              <Field name="files.explotation" {...getInputProps()} />
+              <Field {...getInputProps()} />
               <Button>Procure no computador</Button>
               <Accepted>Arquivos aceitos: pdf, jpg, png, bmp</Accepted>
             </DragDrop>
@@ -68,9 +82,16 @@ const StepDocuments = ({ values, setFieldValue }) => (
       </Col>
       <Col>
         <Dropzone
-          onDrop={acceptedFiles => {
-            setFieldValue('files.activities', acceptedFiles);
+          accept="image/jpeg,image/jpg,image/png,image/bmp,application/pdf"
+          onDrop={([file, ...rest]) => {
+            setFieldValue(
+              'files.activities',
+              Object.assign(file, {
+                preview: URL.createObjectURL(file)
+              })
+            );
           }}
+          multiple={false}
         >
           {({ getRootProps, getInputProps }) => (
             <DragDrop {...getRootProps()}>
@@ -83,7 +104,7 @@ const StepDocuments = ({ values, setFieldValue }) => (
                     : Upload
                 }
               />
-              <Field name="files.activities" {...getInputProps()} />
+              <Field {...getInputProps()} />
               <Button>Procure no computador</Button>
               <Accepted>Arquivos aceitos: pdf, jpg, png, bmp</Accepted>
             </DragDrop>

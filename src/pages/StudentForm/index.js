@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Formik } from 'formik';
+import Alert from 'react-s-alert';
 
 import Stepper from '../../components/Stepper';
 import StepPersonal from '../StepPersonal';
 import StepGrantor from '../StepGrantor';
 import StepDocuments from '../StepDocuments';
-// import StepSummary from '../StepSummary';
+import StepSummary from '../StepSummary';
 
 import {
   Container,
@@ -48,7 +49,8 @@ class StudentForm extends Component {
     ]
   };
 
-  previousStep = () => {
+  previousStep = e => {
+    e.preventDefault();
     const { step } = this.state;
     this.setState({ step: step - 1 });
   };
@@ -61,6 +63,9 @@ class StudentForm extends Component {
 
   submit = values => {
     console.log('Values: ', values);
+    const { history } = this.props;
+    Alert.success('Processo enviado com sucesso');
+    history.push('/internship');
   };
   render() {
     const { step, options } = this.state;
@@ -110,8 +115,8 @@ class StudentForm extends Component {
             const steps = [
               <StepPersonal />,
               <StepGrantor options={options} />,
-              <StepDocuments setFieldValue={setFieldValue} values={values} />
-              // <StepSummary />
+              <StepDocuments setFieldValue={setFieldValue} values={values} />,
+              <StepSummary values={values} />
             ];
             return (
               <Form>

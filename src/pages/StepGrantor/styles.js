@@ -15,7 +15,7 @@ const Subtitle = styled.h3`
 `;
 
 const Row = styled.div`
-  width: 80%;
+  width: 90%;
   display: flex;
   ${({ bottom }) =>
     bottom &&
@@ -44,7 +44,7 @@ const MyField = styled(Field)`
 `;
 
 const HorizontalDivider = styled.hr`
-  width: 80%;
+  width: 90%;
   margin: 5vh 0;
   height: 1px;
   color: rgba(96, 121, 137, 0.3);

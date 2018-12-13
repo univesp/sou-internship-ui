@@ -1,5 +1,8 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
 import Jumbotron from '../Jumbotron';
 import Internship from '../../pages/Internship';
@@ -44,8 +47,8 @@ const links = [
     name: 'Prontuário',
     active: false,
     url: '/report'
-  },
-]
+  }
+];
 
 const Content = () => (
   <Fragment>
@@ -53,15 +56,19 @@ const Content = () => (
     <Main>
       <BrowserRouter>
         <Switch>
-          <Route path="/internship" render={({ match: { url } }) => (
-            <Fragment>
-              <Route exact path={`${url}`} component={Internship} />
-              <Route path={`${url}/explotation`} component={Regulation} />
-              <Route path={`${url}/student/form`} component={StudentForm} />
-            </Fragment>
-          )} />
+          <Route
+            path="/internship"
+            render={({ match: { url } }) => (
+              <Fragment>
+                <Route exact path={`${url}`} component={Internship} />
+                <Route path={`${url}/explotation`} component={Regulation} />
+                <Route path={`${url}/student/form`} component={StudentForm} />
+              </Fragment>
+            )}
+          />
         </Switch>
       </BrowserRouter>
+      <Alert stack={{ limit: 3 }} position="bottom-right" />
     </Main>
   </Fragment>
 );

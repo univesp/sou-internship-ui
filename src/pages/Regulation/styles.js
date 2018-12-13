@@ -80,7 +80,7 @@ const TextPdf = styled.a`
   span {
     display: inline-block;
     font-size: 0.8rem;
-    color: #d4343f;
+    color: #ED3B48;
   }
 `;
 
