@@ -64,7 +64,10 @@ class StudentForm extends Component {
   submit = values => {
     console.log('Values: ', values);
     const { history } = this.props;
-    Alert.success('Processo enviado com sucesso');
+    Alert.success('Processo enviado com sucesso', {
+      position: 'bottom-right',
+      effect: 'slide'
+    });
     history.push('/internship');
   };
   render() {

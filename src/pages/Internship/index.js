@@ -1,29 +1,75 @@
 import React, { Component, Fragment } from 'react';
 
-import { Container, Text, Actions, Action } from './styles';
+import {
+  Container,
+  Table,
+  Head,
+  Row,
+  Th,
+  Body,
+  Td,
+  Type,
+  Grantor,
+  MyLink as Link,
+  Status,
+  Text,
+  Actions,
+  Action
+} from './styles';
 
-const dict = {
-  name: 'Processo',
-  created_at: 'Enviado em',
-  status: 'Status',
-  responsible: 'Área/Responsável'
-};
+const status = ['Em análise', 'Pendência', 'Aceito', 'Negado'];
 class Internship extends Component {
   state = {
     process: [
       {
+        id: 1,
         name: 'Aproveitamento de Horas',
         grantor: {
           name: 'Empresa XXX'
         },
         created_at: '01/01/2017',
-        status: 'Em análise',
+        status: 0,
         responsible: 'Mediadora Paula Souza'
       }
     ]
   };
   renderTable = () => {
-    return <h1>Hello</h1>;
+    const { process } = this.state;
+    return (
+      <Table>
+        <Head>
+          <Row>
+            <Th align="left">Processo</Th>
+            <Th>Enviado em</Th>
+            <Th align="left">Status</Th>
+            <Th align="left">Área/Responsável</Th>
+            <Th />
+          </Row>
+        </Head>
+        <Body>
+          {process.map(item => (
+            <Row>
+              <Td align="left">
+                <Type>
+                  {item.name}
+                  <Grantor>{item.grantor.name}</Grantor>
+                </Type>
+              </Td>
+              <Td>{item.created_at}</Td>
+              <Td align="left">
+                <Status finalized={false}>{status[item.status]}</Status>
+              </Td>
+              <Td align="left">
+                <Status finalized={false}>{item.responsible}</Status>
+              </Td>
+              <Td>
+                <Link to={`/resume/${item.id}`}>Visualizar resumo</Link>
+              </Td>
+            </Row>
+          ))}
+        </Body>
+      </Table>
+    );
   };
   render() {
     const {

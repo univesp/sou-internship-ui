@@ -68,7 +68,7 @@ const Content = () => (
           />
         </Switch>
       </BrowserRouter>
-      <Alert stack={{ limit: 3 }} position="bottom-right" />
+      <Alert stack={{ limit: 3 }} />
     </Main>
   </Fragment>
 );
