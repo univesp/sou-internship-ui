@@ -82,7 +82,7 @@ class Internship extends Component {
           {process ? this.renderTable() : null}
           <Text>Selecione o processo que quer iniciar:</Text>
           <Actions>
-            <Action to={`${url}/explotation`}>
+            <Action to={`${url}/student/explotation`}>
               Aproveitamento de horas de estágio
             </Action>
             <Action to={`${url}`} disabled>

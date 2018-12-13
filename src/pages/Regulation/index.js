@@ -87,7 +87,7 @@ const Regulation = () => (
         </Text>
       </SplitRight>
     </SplitContainer>
-    <Agreement to="student/form">Eu concordo</Agreement>
+    <Agreement to="form">Eu concordo</Agreement>
   </Container>
 );
 
