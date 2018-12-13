@@ -14,30 +14,43 @@ import {
   Section,
   Title,
   SearchInput,
-  Search
+  Search,
+  Nav,
+  Actions,
+  Action
 } from './styles';
 import SendIcon from '../../../../assets/imgs/enviar.svg';
 import SearchIcon from '../../../../assets/imgs/pesquisar.svg';
 
 class TableComponent extends Component {
   state = {
+    tab: 0,
     process: [
       {
         id: 3331,
         avatar: '',
         name: 'Marco Antônio Barão Neves',
         course: 'Ciência da computação',
-        semStart: '20/01/2019',
-        semEnd: '19/12/2023'
+        semStart: '2019.1',
+        semEnd: '2023.2',
+        status: 0
       }
     ]
   };
   render() {
-    const { process } = this.state;
+    const { process, tab } = this.state;
     return (
       <Container>
         <Title>Pedidos de Aproveitamento de Horas</Title>
         <Section>
+          <Nav>
+            <Actions>
+              <Action active={tab === 0} onClick={() => this.setState({ tab: 0 })}>Pedidos abertos</Action>
+              <Action active={tab === 1} onClick={() => this.setState({ tab: 1 })}>Deferidos</Action>
+              <Action active={tab === 2} onClick={() => this.setState({ tab: 2 })}>Indeferidos</Action>
+              <Action active={tab === 3} onClick={() => this.setState({ tab: 3 })}>Pendentes</Action>
+            </Actions>
+          </Nav>
           <Search>
             <SearchInput placeholder="Pesquise nome ou curso" />
             <Icon icon={SearchIcon} />
@@ -48,7 +61,7 @@ class TableComponent extends Component {
                 <Th />
                 <Th align="left">Nome</Th>
                 <Th align="left">RA</Th>
-                <Th align="left">Polo</Th>
+                <Th align="left">Curso</Th>
                 <Th align="left">
                   Semestre/
                   <br />
@@ -63,7 +76,7 @@ class TableComponent extends Component {
               </Row>
             </Head>
             <Body>
-              {process.map(item => (
+              {process.filter(item => item.status === tab).map(item => (
                 <Row>
                   <Td>
                     <Avatar avatar={item.avatar} />
@@ -74,7 +87,7 @@ class TableComponent extends Component {
                   <Td align="left">{item.semStart}</Td>
                   <Td align="left">{item.semEnd}</Td>
                   <Td>
-                    <Link to={`moderator/form/${item.id}`}>
+                    <Link to={`form/${item.id}`}>
                       <Icon icon={SendIcon} />
                     </Link>
                   </Td>

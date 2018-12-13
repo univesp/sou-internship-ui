@@ -1,9 +1,42 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 3rem;
+`;
+
+const Nav = styled.nav`
+  width: 100%;
+  height: 50px;
+`
+
+const Actions = styled.ul`
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+`;
+
+const Action = styled.li`
+  position: relative;
+  text-decoration: none;
+  cursor: pointer;
+  ${props => props.active && css`
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      background-color: #b13239;
+      left: 0;
+      bottom: -0.5rem;
+    }
+  `}
+  &:not(:last-of-type) {
+    margin-right: 1rem;
+  }
 `;
 
 const Title = styled.h2`
@@ -88,5 +121,8 @@ export {
   Icon,
   Search,
   SearchInput,
-  Section
+  Section,
+  Nav,
+  Actions,
+  Action
 };

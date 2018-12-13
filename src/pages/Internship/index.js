@@ -17,7 +17,7 @@ import {
   Action
 } from './styles';
 
-const status = ['Em análise', 'Deferido', 'Indeferido'];
+const status = ['Em análise', 'Deferido', 'Indeferido', 'Pendentes'];
 class Internship extends Component {
   state = {
     process: [
