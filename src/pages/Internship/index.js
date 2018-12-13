@@ -63,7 +63,7 @@ class Internship extends Component {
                 <Status finalized={false}>{item.responsible}</Status>
               </Td>
               <Td>
-                <Link to={`/resume/${item.id}`}>Visualizar resumo</Link>
+                <Link to={`resume/${item.id}`}>Visualizar resumo</Link>
               </Td>
             </Row>
           ))}

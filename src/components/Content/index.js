@@ -9,6 +9,7 @@ import Internship from '../../pages/Internship';
 import Regulation from '../../pages/Regulation';
 import StudentForm from '../../pages/StudentForm';
 import Summary from '../../pages/Moderator/Explotation/Summary';
+import Table from '../../pages/Moderator/Explotation/Table';
 
 import Main from './styles';
 import Avaliations from '../../assets/imgs/avaliacoes.svg';
@@ -62,9 +63,16 @@ const Content = () => (
             render={({ match: { url } }) => (
               <Fragment>
                 <Route exact path={`${url}`} component={Internship} />
-                <Route path={`${url}/explotation`} component={Regulation} />
+                <Route
+                  path={`${url}/student/explotation`}
+                  component={Regulation}
+                />
                 <Route path={`${url}/student/form`} component={StudentForm} />
-                <Route path={`${url}/moderator/form`} component={Summary} />
+                <Route
+                  path={`${url}/moderator/explotation`}
+                  component={Table}
+                />
+                <Route path={`${url}/moderator/form/:id`} component={Summary} />
               </Fragment>
             )}
           />
