@@ -17,7 +17,7 @@ import {
   Action
 } from './styles';
 
-const status = ['Em análise', 'Pendência', 'Aceito', 'Negado'];
+const status = ['Em análise', 'Deferido', 'Indeferido'];
 class Internship extends Component {
   state = {
     process: [
@@ -40,7 +40,7 @@ class Internship extends Component {
         <Head>
           <Row>
             <Th align="left">Processo</Th>
-            <Th>Enviado em</Th>
+            <Th align="left">Enviado em</Th>
             <Th align="left">Status</Th>
             <Th align="left">Área/Responsável</Th>
             <Th />
@@ -55,7 +55,7 @@ class Internship extends Component {
                   <Grantor>{item.grantor.name}</Grantor>
                 </Type>
               </Td>
-              <Td>{item.created_at}</Td>
+              <Td align="left">{item.created_at}</Td>
               <Td align="left">
                 <Status finalized={false}>{status[item.status]}</Status>
               </Td>

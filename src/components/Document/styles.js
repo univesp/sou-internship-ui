@@ -7,7 +7,6 @@ const Image = styled.img`
 
 const Card = styled.div`
   width: 100%;
-  min-width: 341px;
   height: 100%;
   min-height: 311px; 
   box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.2);
