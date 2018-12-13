@@ -69,7 +69,7 @@ const Label = styled.label`
   }
 `;
 
-const Textarea = styled.textarea`
+const Textarea = styled(Field)`
   display: block;
   width: 100%;
   height: 200px;

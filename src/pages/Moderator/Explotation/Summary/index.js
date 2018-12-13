@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import StepSummary from '../../../StepSummary';
-import { Formik } from 'formik';
+import { Formik, Form } from 'formik';
+import Alert from 'react-s-alert';
 
 import {
   Container,
@@ -32,12 +33,22 @@ class Summary extends Component {
     this.setState({ overrule: true });
   };
 
+  submit = values => {
+    console.log('Values: ', values);
+    const { history } = this.props;
+    Alert.success('Resposta de aproveitamento reencaminhada!', {
+      position: 'bottom-right',
+      effect: 'slide'
+    });
+    history.push('/internship/moderator/explotation');
+  }
+
   renderJustification() {
     return (
       <Fragment>
         <Label>
           Justificativa para indeferimento<span>*</span>
-          <Textarea placeholder="Digite aqui..." />
+          <Textarea component="textarea" placeholder="Digite aqui..." name="justification" />
         </Label>
         <GroupButton>
           <Button primary type="submit">
@@ -58,10 +69,11 @@ class Summary extends Component {
         <Formik
           onSubmit={this.submit}
           initialValues={{
-            hours: 0
+            hours: 0,
+            justification: ''
           }}
         >
-          <Fragment>
+          <Form>
             <Area>
               <Text>
                 Neste processo de aproveitamento de estágio são conferidos ao
@@ -73,12 +85,12 @@ class Summary extends Component {
               <Button secondary onClick={this.overrule}>
                 Indeferir
               </Button>
-              <Button primary type="submit">
+              <Button primary type="submit" onClick={this.handleSubmit}>
                 Deferir
               </Button>
             </GroupButton>
             {overrule ? this.renderJustification() : null}
-          </Fragment>
+          </Form>
         </Formik>
       </Container>
     );
