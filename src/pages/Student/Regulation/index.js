@@ -15,7 +15,7 @@ import {
   Agreement
 } from './styles';
 
-import PdfIcon from '../../assets/imgs/pdf.svg';
+import PdfIcon from '../../../assets/imgs/pdf.svg';
 
 const Regulation = () => (
   <Container>

@@ -6,8 +6,8 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 
 import Jumbotron from '../Jumbotron';
 import Internship from '../../pages/Internship';
-import Regulation from '../../pages/Regulation';
-import StudentForm from '../../pages/StudentForm';
+import Regulation from '../../pages/Student/Regulation';
+import StudentForm from '../../pages/Student/Form';
 import Summary from '../../pages/Moderator/Explotation/Summary';
 import Table from '../../pages/Moderator/Explotation/Table';
 

@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 const Base = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Barlow:200i,400,400i,500,600|Open+Sans:400i');
+  @import url('https://fonts.googleapis.com/css?family=Barlow:200i,400,400i,500,600|Open+Sans:400,400i');
 
   body, html {
     width: 100%;
@@ -10,9 +10,12 @@ const Base = createGlobalStyle`
 
   html {
     font-size: 16px;
-    font-family: 'Barlow', sans-serif;
+    font-family: var(--text);
     letter-spacing: 0.1vw;
-    box-sizing: border-box;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--title);
   }
 
   #root {

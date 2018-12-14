@@ -9,7 +9,7 @@ const Container = styled.div`
 const Nav = styled.nav`
   width: 100%;
   height: 50px;
-  border-bottom: 1px solid c4d1d6;
+  border-bottom: 1px solid var(--gray);
 `;
 
 const Actions = styled.ul`
@@ -24,17 +24,19 @@ const Action = styled.li`
   position: relative;
   text-decoration: none;
   cursor: pointer;
-  ${props => props.active && css`
-    &::after {
-      content: '';
-      position: absolute;
-      width: 100%;
-      height: 5px;
-      background-color: #b13239;
-      left: 0;
-      bottom: -0.5rem;
-    }
-  `}
+  ${props =>
+    props.active &&
+    css`
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 5px;
+        background-color: var(--red);
+        left: 0;
+        bottom: -0.5rem;
+      }
+    `}
   &:not(:last-of-type) {
     margin-right: 1rem;
   }
@@ -50,7 +52,7 @@ const Section = styled.section`
   width: 90%;
   margin: 0 auto;
   padding: 2rem;
-  border: 1px solid #c4d1d6;
+  border: 1px solid var(--gray);
 `;
 
 const Search = styled.div`

@@ -20,18 +20,7 @@ import {
 const status = ['Em análise', 'Deferido', 'Indeferido', 'Pendentes'];
 class Internship extends Component {
   state = {
-    process: [
-      {
-        id: 1,
-        name: 'Aproveitamento de Horas',
-        grantor: {
-          name: 'Empresa XXX'
-        },
-        created_at: '01/01/2017',
-        status: 0,
-        responsible: 'Mediadora Paula Souza'
-      }
-    ]
+    process: null
   };
   renderTable = () => {
     const { process } = this.state;

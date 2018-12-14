@@ -13,8 +13,8 @@ import {
   Field,
   Button
 } from './styles';
-import Upload from '../../assets/imgs/upload.svg';
-import Success from '../../assets/imgs/sucesso_upload.svg';
+import Upload from '../../../assets/imgs/upload.svg';
+import Success from '../../../assets/imgs/sucesso_upload.svg';
 
 const StepDocuments = ({ values, setFieldValue }) => (
   <Fragment>

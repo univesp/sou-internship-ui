@@ -14,7 +14,7 @@ const Row = styled.div`
 const Col = styled.div`
   width: ${({ width }) => width || '100%'};
   height: 100%;
-  border: 1px dashed #c4d1d6;
+  border: 1px dashed var(--gray);
   &:not(:last-of-type) {
     margin-right: 5%;
   }
@@ -33,8 +33,8 @@ const Document = styled.h3`
   width: 100%;
   height: 30px;
   line-height: 30px;
-  color: #fff;
-  background-color: #607989;
+  color: var(--zero);
+  background-color: var(--gray-darken);
   text-transform: uppercase;
   margin: 0;
 `;
@@ -43,7 +43,7 @@ const Text = styled.p``;
 
 const Accepted = styled.span`
   font-size: 0.8rem;
-  color: #c4d1d6;
+  color: var(--gray);
 `;
 
 const Icon = styled.img`
@@ -63,8 +63,8 @@ const Button = styled.a`
   height: 30px;
   line-height: 30px;
   margin: 0 auto 0.5rem;
-  background-color: #fff;
-  border: 1px solid #354551;
+  background-color: var(--zero);
+  border: 1px solid var(--black-lighten);
   cursor: pointer;
 `;
 

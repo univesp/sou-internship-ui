@@ -15,7 +15,8 @@ const Step = styled.li`
   flex: 1 0 auto;
   position: relative;
   text-align: center;
-  color: ${props => (props.active || props.completed ? '#00cfc6' : '#000')};
+  color: ${props =>
+    props.active || props.completed ? 'var(--cyan-lighten)' : '#000'};
   &:before {
     content: '';
     box-sizing: border-box;
@@ -30,7 +31,9 @@ const Step = styled.li`
     margin: 0 auto 10px;
     border-radius: 50%;
     background-color: ${props =>
-      props.active || props.completed ? '#00cfc6' : '#dee5e8'};
+      props.active || props.completed
+        ? 'var(--cyan-lighten)'
+        : 'var(gray-lighten)'};
   }
   &:after {
     content: '';
@@ -42,17 +45,17 @@ const Step = styled.li`
         ? css`
             background-image: linear-gradient(
               to right,
-              #00cfc6 50%,
-              #dee5e8 50%
+              var(--cyan-lighten) 50%,
+              var(--dark-lighten) 50%
             );
           `
         : css`
-            background-color: #dee5e8;
+            background-color: var(--dark-lighten);
           `}
     ${props =>
       props.completed &&
       css`
-        background-color: #00cfc6;
+        background-color: var(--cyan-lighten);
       `}
     top: 25px;
     left: 50%;

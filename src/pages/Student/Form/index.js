@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Formik } from 'formik';
 import Alert from 'react-s-alert';
 
-import Stepper from '../../components/Stepper';
+import Stepper from '../../../components/Stepper';
 import StepPersonal from '../StepPersonal';
 import StepGrantor from '../StepGrantor';
 import StepDocuments from '../StepDocuments';
-import StepSummary from '../StepSummary';
+import StepSummary from '../../StepSummary';
 
 import {
   Container,
@@ -16,10 +16,10 @@ import {
   GroupButton,
   Button
 } from './styles';
-import PersonalData from '../../assets/imgs/dadospessoais.svg';
-import CourseData from '../../assets/imgs/dadosdocurso.svg';
-import Documents from '../../assets/imgs/documentos.svg';
-import Report from '../../assets/imgs/relatorio.svg';
+import PersonalData from '../../../assets/imgs/dadospessoais.svg';
+import CourseData from '../../../assets/imgs/dadosdocurso.svg';
+import Documents from '../../../assets/imgs/documentos.svg';
+import Report from '../../../assets/imgs/relatorio.svg';
 
 const stepper = [
   {

@@ -26,11 +26,11 @@ const GroupButton = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${props => (props.primary ? '#FFFFFF' : '#D13239')};
-  border: 1px solid #d13239;
+  background-color: ${props => (props.primary ? 'var(--zero)' : 'var(--red)')};
+  border: 1px solid var(--red);
   padding: 0.5rem 1rem;
   text-transform: uppercase;
-  color: ${props => (props.primary ? '#D13239' : '#FFFFFF')};
+  color: ${props => (props.primary ? 'var(--red)' : 'var(--zero)')};
   cursor: pointer;
   &:not(:last-of-type) {
     margin-right: 0.8rem;
@@ -42,7 +42,7 @@ const Area = styled.div`
   text-align: center;
   padding: 2rem 0;
   margin: 10vh 0 0;
-  border: 1px solid #d13239;
+  border: 1px solid var(--red);
 `;
 
 const MyField = styled(Field)`
@@ -63,9 +63,9 @@ const Label = styled.label`
   margin-top: 3vh;
   padding-top: 3vh;
   border-top: 4px dashed #000;
-  color: #607989;
+  color: var(--gray-darken);
   span {
-    color: #d13239;
+    color: var(--red);
   }
 `;
 

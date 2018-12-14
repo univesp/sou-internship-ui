@@ -45,7 +45,7 @@ const Grantor = styled.span`
 `;
 
 const Status = styled.span`
-  color: #ed3b48;
+  color: var(--red-lighten);
   font-weight: bold;
 `;
 
@@ -56,10 +56,11 @@ const MyLink = styled(Link)`
 `;
 
 const Text = styled.p`
-  font-family: 'Open-sans', sans-serif;
   font-size: 1.2rem;
+  font-family: var(--title);
+  font-weight: 500;
   text-align: center;
-  color: #b13239;
+  color: var(--red);
 `;
 
 const Actions = styled.div`
@@ -77,8 +78,8 @@ const Action = styled(Link)`
   display: inline-block;
   width: 280px;
   padding: 1rem;
-  background-color: #b13239;
-  color: #fff;
+  background-color: var(--red-darken);
+  color: var(--zero);
   text-align: center;
   text-transform: uppercase;
   text-decoration: none;
