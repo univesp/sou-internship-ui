@@ -15,6 +15,7 @@ const Step = styled.li`
   flex: 1 0 auto;
   position: relative;
   text-align: center;
+  cursor: ${props => props.active || props.completed ? 'pointer' : 'normal'};
   color: ${props =>
     props.active || props.completed ? 'var(--cyan-lighten)' : '#000'};
   &:before {
@@ -33,7 +34,7 @@ const Step = styled.li`
     background-color: ${props =>
       props.active || props.completed
         ? 'var(--cyan-lighten)'
-        : 'var(gray-lighten)'};
+        : 'var(--gray-lighten)'};
   }
   &:after {
     content: '';
@@ -46,11 +47,11 @@ const Step = styled.li`
             background-image: linear-gradient(
               to right,
               var(--cyan-lighten) 50%,
-              var(--dark-lighten) 50%
+              var(--gray-lighten) 50%
             );
           `
         : css`
-            background-color: var(--dark-lighten);
+            background-color: var(--gray-lighten);
           `}
     ${props =>
       props.completed &&

@@ -37,11 +37,13 @@ const Title = styled.h2`
 
 const Text = styled.p`
   font-size: 1rem;
+  text-align: justify;
 `;
 
 const OrderedList = styled.ol`
   list-style-type: upper-roman;
   line-height: 1.2rem;
+  cursor: pointer;
   ol {
     width: 100%;
     padding-inline-start: 0.8rem;

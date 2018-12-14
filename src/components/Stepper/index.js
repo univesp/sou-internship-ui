@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Steps, Step } from './styles';
 
-const Stepper = ({ step, steps }) => (
+const Stepper = ({ step, steps, clickStep }) => (
   <Steps>
     {steps.map(({ icon, name }, index) => (
       <Step
@@ -11,6 +11,7 @@ const Stepper = ({ step, steps }) => (
         completed={step > index}
         icon={icon}
         key={name}
+        onClick={() => step > index && clickStep(index)}
       >
         {name}
       </Step>
