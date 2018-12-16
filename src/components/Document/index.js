@@ -25,16 +25,17 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 }/pdf.worker.js`;
 
 class Document extends Component {
-  renderImage = file => <Image src={file.preview} alt={file.name} />;
+  renderImage = file => <Image src={URL.createObjectURL(file)} alt={file.name} />;
 
   renderPdf = file => (
-    <Pdf rotate={270} file={file}>
+    <Pdf rotate={270} file={URL.createObjectURL(file)}>
       <Page width={250} pageNumber={1} />
     </Pdf>
   );
 
   render() {
-    const { file, name } = this.props;
+    const { file:fileProps, name, document } = this.props;
+    const file = JSON.stringfy(fileProps) === '{}' ? JSON.parse(localStorage.getItem(document)) : file;
     return (
       <Card>
         <HeaderCard>

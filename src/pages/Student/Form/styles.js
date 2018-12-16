@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
 
 const Container = styled.div`
   width: 100%;
@@ -19,8 +18,6 @@ const Subtitle = styled.h4`
   margin: 0 0 5vh;
 `;
 
-const Forms = styled(Form)``;
-
 const GroupButton = styled.div`
   margin-top: 6vh;
   display: flex;
@@ -39,4 +36,4 @@ const Button = styled.button`
   }
 `;
 
-export { Container, Title, Subtitle, Forms, GroupButton, Button };
+export { Container, Title, Subtitle, GroupButton, Button };
