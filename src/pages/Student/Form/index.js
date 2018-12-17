@@ -7,13 +7,7 @@ import StepGrantor from '../StepGrantor';
 import StepDocuments from '../StepDocuments';
 import StepSummary from '../../StepSummary';
 
-import {
-  Container,
-  Title,
-  Subtitle,
-  GroupButton,
-  Button
-} from './styles';
+import { Container, Title, Subtitle, GroupButton, Button } from './styles';
 import PersonalData from '../../../assets/imgs/dadospessoais.svg';
 import CourseData from '../../../assets/imgs/concedente.svg';
 import Documents from '../../../assets/imgs/documentos.svg';
@@ -76,16 +70,27 @@ class StudentForm extends Component {
         email: ''
       },
       files: {
-        work: {},
-        explotation: {},
-        activities: {}
+        work: null,
+        explotation: null,
+        activities: null
       }
     }
   };
 
   componentDidMount() {
-    const { step, values } = JSON.parse(localStorage.getItem('state'));
-    this.setState({ step, values });
+    const { step, values } =
+      JSON.parse(localStorage.getItem('state')) || this.state;
+    this.setState({
+      step: Math.min(step, 2),
+      values: {
+        ...values,
+        files: {
+          work: null,
+          explotation: null,
+          activities: null
+        }
+      }
+    });
   }
 
   previousStep = e => {
@@ -104,14 +109,17 @@ class StudentForm extends Component {
   };
 
   saveOnLocalStorage = values => {
-    const { step, values:stateValues } = this.state;
-    localStorage.setItem('state', JSON.stringify({ step, values: { ...stateValues, ...values } }));
-  }
+    const { step, values: stateValues } = this.state;
+    localStorage.setItem(
+      'state',
+      JSON.stringify({ step, values: { ...stateValues, ...values } })
+    );
+  };
 
   submit = values => {
-    const { step, values:oldValues } = this.state;
+    const { step, values: oldValues } = this.state;
     this.setState({ values: { ...oldValues, ...values } });
-    
+
     if (step === stepper.length - 1) {
       const { history } = this.props;
       Alert.success('Processo enviado com sucesso', {
@@ -119,6 +127,7 @@ class StudentForm extends Component {
         effect: 'slide'
       });
       history.push('/internship');
+      localStorage.removeItem('state');
     } else {
       this.nextStep();
       this.saveOnLocalStorage({});
@@ -144,10 +153,28 @@ class StudentForm extends Component {
   render() {
     const { step, options, values } = this.state;
     const steps = [
-      <StepPersonal handleSubmit={this.submit} buttons={this.renderButtons()} />,
-      <StepGrantor handleSubmit={this.submit} options={options} saveChanges={this.saveOnLocalStorage} initialValues={values} buttons={this.renderButtons()} />,
-      <StepDocuments handleSubmit={this.submit} initialValues={values} buttons={this.renderButtons()} />,
-      <StepSummary handleSubmit={this.submit} values={values} buttons={this.renderButtons()} />
+      <StepPersonal
+        handleSubmit={this.submit}
+        buttons={this.renderButtons()}
+      />,
+      <StepGrantor
+        handleSubmit={this.submit}
+        options={options}
+        saveChanges={this.saveOnLocalStorage}
+        initialValues={values}
+        buttons={this.renderButtons()}
+      />,
+      <StepDocuments
+        handleSubmit={this.submit}
+        initialValues={values}
+        saveChanges={this.saveOnLocalStorage}
+        buttons={this.renderButtons()}
+      />,
+      <StepSummary
+        handleSubmit={this.submit}
+        values={values}
+        buttons={this.renderButtons()}
+      />
     ];
     return (
       <Container>

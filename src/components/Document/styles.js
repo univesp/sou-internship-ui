@@ -44,7 +44,7 @@ const Icon = styled.i`
     css`
       cursor: pointer;
     `}
-  &:not(:last-of-type) {
+  &:not(:last-child) {
     margin-right: 10px;
   }
 `;

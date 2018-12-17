@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { pdfjs } from 'react-pdf';
 import { Document as Pdf, Page } from 'react-pdf';
 import PropTypes from 'prop-types';
+import FileSaver from 'file-saver';
 
 import {
   Image,
@@ -17,33 +18,36 @@ import {
 import PdfIcon from '../../assets/imgs/pdf.svg';
 import ImageIcon from '../../assets/imgs/imagem.svg';
 import DownloadIcon from '../../assets/imgs/download.svg';
-import MoreIcon from '../../assets/imgs/mais.svg';
-import PrinterIcon from '../../assets/imgs/impressora.svg';
+import OpenIcon from '../../assets/imgs/abrir.svg';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${
   pdfjs.version
 }/pdf.worker.js`;
 
 class Document extends Component {
-  renderImage = file => <Image src={URL.createObjectURL(file)} alt={file.name} />;
+  renderImage = file => <Image src={file.preview} alt={file.name} />;
 
   renderPdf = file => (
-    <Pdf rotate={270} file={URL.createObjectURL(file)}>
+    <Pdf rotate={270} file={file.preview}>
       <Page width={250} pageNumber={1} />
     </Pdf>
   );
 
   render() {
-    const { file:fileProps, name, document } = this.props;
-    const file = JSON.stringfy(fileProps) === '{}' ? JSON.parse(localStorage.getItem(document)) : file;
+    const { file: fileProps, name, document } = this.props;
+    const file =
+      JSON.stringify(fileProps) === '{}'
+        ? localStorage.getItem(document)
+        : fileProps;
+    console.log(file);
     return (
       <Card>
         <HeaderCard>
           <Name>{name}</Name>
           <Icons>
-            <Icon icon={PrinterIcon} action={true} />
-            <Icon icon={DownloadIcon} action={true} />
-            <Icon icon={MoreIcon} action={true} />
+            <a href={file.preview} target="_blank">
+              <Icon icon={OpenIcon} action={true} />
+            </a>
           </Icons>
         </HeaderCard>
         <ContentCard>
@@ -52,9 +56,7 @@ class Document extends Component {
             : this.renderImage(file)}
         </ContentCard>
         <FooterCard>
-          <Icon icon={file.type === 'application/pdf'
-            ? PdfIcon
-            : ImageIcon}/>
+          <Icon icon={file.type === 'application/pdf' ? PdfIcon : ImageIcon} />
           <FileName>{file.name}</FileName>
         </FooterCard>
       </Card>

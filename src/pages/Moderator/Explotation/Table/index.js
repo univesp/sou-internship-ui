@@ -25,6 +25,7 @@ import SearchIcon from '../../../../assets/imgs/pesquisar.svg';
 class TableComponent extends Component {
   state = {
     tab: 0,
+    search: '',
     process: [
       {
         id: 3331,
@@ -38,21 +39,44 @@ class TableComponent extends Component {
     ]
   };
   render() {
-    const { process, tab } = this.state;
+    const { process, tab, search } = this.state;
     return (
       <Container>
         <Title>Pedidos de Aproveitamento de Horas</Title>
         <Section>
           <Nav>
             <Actions>
-              <Action active={tab === 0} onClick={() => this.setState({ tab: 0 })}>Pedidos abertos</Action>
-              <Action active={tab === 1} onClick={() => this.setState({ tab: 1 })}>Deferidos</Action>
-              <Action active={tab === 2} onClick={() => this.setState({ tab: 2 })}>Indeferidos</Action>
-              <Action active={tab === 3} onClick={() => this.setState({ tab: 3 })}>Pendentes</Action>
+              <Action
+                active={tab === 0}
+                onClick={() => this.setState({ tab: 0 })}
+              >
+                Pedidos abertos
+              </Action>
+              <Action
+                active={tab === 1}
+                onClick={() => this.setState({ tab: 1 })}
+              >
+                Deferidos
+              </Action>
+              <Action
+                active={tab === 2}
+                onClick={() => this.setState({ tab: 2 })}
+              >
+                Indeferidos
+              </Action>
+              <Action
+                active={tab === 3}
+                onClick={() => this.setState({ tab: 3 })}
+              >
+                Pendentes
+              </Action>
             </Actions>
           </Nav>
           <Search>
-            <SearchInput placeholder="Pesquise nome ou curso" />
+            <SearchInput
+              placeholder="Pesquise nome ou curso"
+              onChange={({ target }) => this.setState({ search: target.value })}
+            />
             <Icon icon={SearchIcon} />
           </Search>
           <Table>
@@ -76,23 +100,30 @@ class TableComponent extends Component {
               </Row>
             </Head>
             <Body>
-              {process.filter(item => item.status === tab).map(item => (
-                <Row>
-                  <Td>
-                    <Avatar avatar={item.avatar} />
-                  </Td>
-                  <Td align="left">{item.name}</Td>
-                  <Td align="left">{item.id}</Td>
-                  <Td align="left">{item.course}</Td>
-                  <Td align="left">{item.semStart}</Td>
-                  <Td align="left">{item.semEnd}</Td>
-                  <Td>
-                    <Link to={`form/${item.id}`}>
-                      <Icon icon={SendIcon} />
-                    </Link>
-                  </Td>
-                </Row>
-              ))}
+              {process
+                .filter(item => item.status === tab)
+                .filter(
+                  item =>
+                    RegExp(search).test(item.name) ||
+                    RegExp(search).test(item.course)
+                )
+                .map(item => (
+                  <Row>
+                    <Td>
+                      <Avatar avatar={item.avatar} />
+                    </Td>
+                    <Td align="left">{item.name}</Td>
+                    <Td align="left">{item.id}</Td>
+                    <Td align="left">{item.course}</Td>
+                    <Td align="left">{item.semStart}</Td>
+                    <Td align="left">{item.semEnd}</Td>
+                    <Td>
+                      <Link to={`form/${item.id}`}>
+                        <Icon icon={SendIcon} />
+                      </Link>
+                    </Td>
+                  </Row>
+                ))}
             </Body>
           </Table>
         </Section>
