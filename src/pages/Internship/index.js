@@ -17,7 +17,7 @@ import {
   Action
 } from './styles';
 
-const status = ['Em análise', 'Deferido', 'Indeferido', 'Pendentes'];
+const status = ['Em análise', 'Deferido', 'Indeferido', 'Pendente'];
 class Internship extends Component {
   state = {
     process: null
@@ -71,7 +71,7 @@ class Internship extends Component {
           {process ? this.renderTable() : null}
           <Text>Selecione o processo que quer iniciar:</Text>
           <Actions>
-            <Action to={`${url}/student/explotation`}>
+            <Action to={`${url}/student/regulation`}>
               Aproveitamento de horas de estágio
             </Action>
             <Action to={`${url}`} disabled>

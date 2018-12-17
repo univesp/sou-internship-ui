@@ -57,10 +57,10 @@ const Regulation = () => (
             <Item>Anexo III</Item>
           </UnorderedList>
         </OrderedList>
-        <TextPdf href="algumpdfaidavida">
+        {/* <TextPdf href="algumpdfaidavida">
           <Pdf src={PdfIcon} alt="Baixar como PDF" />
           <span>Versão em PDF</span>
-        </TextPdf>
+        </TextPdf> */}
       </SplitLeft>
       <SplitRight>
         <Title>Regulamento de estágio das licenciaturas</Title>
@@ -97,7 +97,7 @@ const Regulation = () => (
         </Text>
       </SplitRight>
     </SplitContainer>
-    <Agreement to="form">Eu concordo</Agreement>
+    <Agreement to="explotation">Eu concordo</Agreement>
   </Container>
 );
 

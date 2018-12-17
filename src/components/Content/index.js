@@ -64,15 +64,16 @@ const Content = () => (
               <Fragment>
                 <Route exact path={`${url}`} component={Internship} />
                 <Route
-                  path={`${url}/student/explotation`}
+                  path={`${url}/student/regulation`}
                   component={Regulation}
                 />
-                <Route path={`${url}/student/form`} component={StudentForm} />
+                <Route path={`${url}/student/explotation`} component={StudentForm} />
                 <Route
+                  exact
                   path={`${url}/moderator/explotation`}
                   component={Table}
                 />
-                <Route path={`${url}/moderator/form/:id`} component={Summary} />
+                <Route path={`${url}/moderator/explotation/:id`} component={Summary} />
               </Fragment>
             )}
           />

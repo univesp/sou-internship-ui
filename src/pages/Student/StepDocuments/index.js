@@ -18,7 +18,6 @@ import {
 } from './styles';
 import Upload from '../../../assets/imgs/upload.svg';
 import Success from '../../../assets/imgs/sucesso_upload.svg';
-import Error from '../../../assets/imgs/erro.svg'
 
 const SUPPORTED_FORMATS = ['image/jpeg', 'image/jpg', 'image/png', 'image/bmp', 'application/pdf'];
 const FILE_SIZE = 4096;

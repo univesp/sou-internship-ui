@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { pdfjs } from 'react-pdf';
 import { Document as Pdf, Page } from 'react-pdf';
 import PropTypes from 'prop-types';
-import FileSaver from 'file-saver';
 
 import {
   Image,
@@ -17,7 +16,6 @@ import {
 } from './styles';
 import PdfIcon from '../../assets/imgs/pdf.svg';
 import ImageIcon from '../../assets/imgs/imagem.svg';
-import DownloadIcon from '../../assets/imgs/download.svg';
 import OpenIcon from '../../assets/imgs/abrir.svg';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${

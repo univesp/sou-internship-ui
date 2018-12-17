@@ -56,15 +56,17 @@ const Section = styled.section`
 `;
 
 const Search = styled.div`
+  position: relative;
   display: flex;
   width: 25%;
   height: 100%;
   border-bottom: 2px solid #000;
-  margin-bottom: 5vh;
+  margin: 5vh 0;
 `;
 
 const SearchInput = styled.input`
   width: 100%;
+  background-color: transparent;
   border: none;
   padding: 3px;
 `;
@@ -104,11 +106,15 @@ const Avatar = styled.div`
 `;
 
 const Icon = styled.div`
+  position: ${props => props.absolute ? 'absolute' : 'static'};
   width: 32px;
   height: 32px;
+  top: -5px;
+  right: 0;
   background-image: url(${props => props.icon});
   background-repeat: no-repeat;
   background-size: cover;
+  z-index: -1;
 `;
 
 export {

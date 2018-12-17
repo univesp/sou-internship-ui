@@ -77,7 +77,7 @@ class TableComponent extends Component {
               placeholder="Pesquise nome ou curso"
               onChange={({ target }) => this.setState({ search: target.value })}
             />
-            <Icon icon={SearchIcon} />
+            <Icon icon={SearchIcon} absolute={true} />
           </Search>
           <Table>
             <Head>
@@ -118,7 +118,7 @@ class TableComponent extends Component {
                     <Td align="left">{item.semStart}</Td>
                     <Td align="left">{item.semEnd}</Td>
                     <Td>
-                      <Link to={`form/${item.id}`}>
+                      <Link to={`explotation/${item.id}`}>
                         <Icon icon={SendIcon} />
                       </Link>
                     </Td>

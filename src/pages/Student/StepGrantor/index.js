@@ -314,6 +314,7 @@ class StepGrantor extends Component {
                       handleBlur(e);
                       saveChanges(values);
                     }}
+                    tabindex="-1"
                   />
                   <ErrorMessage name="instituition.street" component="span" />
                 </Label>
@@ -346,6 +347,7 @@ class StepGrantor extends Component {
                       handleBlur(e);
                       saveChanges(values);
                     }}
+                    tabindex="-1"
                   />
                   <ErrorMessage name="instituition.city" component="span" />
                 </Label>
@@ -359,6 +361,7 @@ class StepGrantor extends Component {
                       handleBlur(e);
                       saveChanges(values);
                     }}
+                    tabindex="-1"
                   />
                   <ErrorMessage
                     name="instituition.federatedState"
