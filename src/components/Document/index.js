@@ -32,12 +32,7 @@ class Document extends Component {
   );
 
   render() {
-    const { file: fileProps, name, document } = this.props;
-    const file =
-      JSON.stringify(fileProps) === '{}'
-        ? localStorage.getItem(document)
-        : fileProps;
-    console.log(file);
+    const { file, name } = this.props;
     return (
       <Card>
         <HeaderCard>

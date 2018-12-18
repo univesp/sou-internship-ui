@@ -20,6 +20,67 @@ class Summary extends Component {
   state = {
     overrule: false,
     process: {
+      personal: {
+        firstName: 'Alice',
+        lastName: 'Pereira Rodrigues',
+        assumedName: '',
+        birthDate: '1989-01-06',
+        gender: 'F',
+        countryBirth: 'Brasil',
+        nationality: 'Brasileira',
+        race: 0,
+        marital: 2,
+        bloodType: 2,
+        organDonor: true,
+        cellphone: '35992755126',
+        personalEmail: 'alicepereirarodrigues@outlook.com',
+        professionalEmail: 'alice.rodrigues@jourrapide.com',
+        documents: {
+          rg: {
+            number: '273044576',
+            issuer: 'Secretaria de Segurança Pública'
+          },
+          cpf: '17143053929',
+          electoralCard: '',
+          certificateReservist: ''
+        },
+        address: {
+          street: 'Rua da Vitória',
+          number: '66',
+          zip: '07600-100',
+          district: 'Anhangabau',
+          city: 'São Paulo',
+          state: 'SP'
+        }
+      },
+      instituition: {
+        cnpj: '12.321.312/3213-21',
+        name: 'daswqdsaqdw',
+        phone: ['(12) 3213-21321'],
+        fax: '',
+        cep: '08110-100',
+        street: 'Rua Jangaba',
+        complement: '',
+        number: '132',
+        city: 'São Paulo',
+        federatedState: 'SP'
+      },
+      responsible: {
+        name: 'dwqdwq',
+        phone: ['(12) 3123-12321'],
+        email: 'dasdsa@dasda.com'
+      },
+      regent: {
+        name: 'saddwqsa',
+        phone: ['(21) 3213-12312'],
+        email: 'dsadsa@dasdsa.com'
+      },
+      advisor: {
+        name: 'asddwqdsa',
+        phone: ['(12) 3123-12312'],
+        email: 'dqwdsa@das.com',
+        department: 'asdsadsadsadas'
+      },
       files: {
         work: {},
         explotation: {},
@@ -41,14 +102,18 @@ class Summary extends Component {
       effect: 'slide'
     });
     history.push('/internship/moderator/explotation');
-  }
+  };
 
   renderJustification() {
     return (
       <Fragment>
         <Label>
           Justificativa para indeferimento<span>*</span>
-          <Textarea component="textarea" placeholder="Digite aqui..." name="justification" />
+          <Textarea
+            component="textarea"
+            placeholder="Digite aqui..."
+            name="justification"
+          />
         </Label>
         <GroupButton>
           <Button primary type="submit">

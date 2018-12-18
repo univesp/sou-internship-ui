@@ -7,6 +7,8 @@ import StepGrantor from '../StepGrantor';
 import StepDocuments from '../StepDocuments';
 import StepSummary from '../../StepSummary';
 
+import api from '../../../services/api';
+
 import { Container, Title, Subtitle, GroupButton, Button } from './styles';
 import PersonalData from '../../../assets/imgs/dadospessoais.svg';
 import CourseData from '../../../assets/imgs/concedente.svg';
@@ -42,6 +44,40 @@ class StudentForm extends Component {
     ],
     values: {
       grantorSelected: {},
+      personal: {
+        firstName: '',
+        lastName: '',
+        assumedName: '',
+        birthDate: '',
+        gender: '',
+        countryBirth: '',
+        nationality: '',
+        race: '',
+        marital: '',
+        bloodType: '',
+        organDonor: '',
+        cellphone: '',
+        personalEmail: '',
+        professionalEmail: '',
+        documents: {
+          rg: {
+            number: '',
+            issuer: ''
+          },
+          cpf: '',
+          electoralCard: '',
+          certificateReservist: ''
+        },
+        address: {
+          street: '',
+          number: '',
+          zip: '',
+          district: '',
+          city: '',
+          state: '',
+          complement: ''
+        }
+      },
       instituition: {
         cnpj: '',
         name: '',
@@ -77,13 +113,27 @@ class StudentForm extends Component {
     }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { step, values } =
       JSON.parse(localStorage.getItem('state')) || this.state;
+
+    const resPersonal = await api.get('/student/1');
+
     this.setState({
       step: Math.min(step, 2),
       values: {
         ...values,
+        personal: {
+          ...resPersonal.data.studentData[0],
+          address: {
+            street: 'Rua da Vitória',
+            number: '66',
+            zip: '07600-100',
+            district: 'Anhangabau',
+            city: 'São Paulo',
+            state: 'SP'
+          }
+        },
         files: {
           work: null,
           explotation: null,

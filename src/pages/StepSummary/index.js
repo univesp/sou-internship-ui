@@ -4,12 +4,14 @@ import { Formik, Form } from 'formik';
 import Document from '../../components/Document';
 import { Title, Subtitle, Row, Col, Data, Item, Datum } from './styles';
 
-const dict = {work: "Carteira de trabalho", explotation: 'Declaração', activities: 'Relatório de atividades'}
+const dict = {
+  work: 'Carteira de trabalho',
+  explotation: 'Declaração',
+  activities: 'Relatório de atividades'
+};
 
-const StepSummary = ({ handleSubmit, buttons, values: { files } }) => (
-  <Formik
-    onSubmit={handleSubmit}
-  >
+const StepSummary = ({ handleSubmit, buttons, values }) => (
+  <Formik onSubmit={handleSubmit}>
     <Form>
       <Title>Resumo</Title>
       <Subtitle>Dados Pessoais</Subtitle>
@@ -17,72 +19,79 @@ const StepSummary = ({ handleSubmit, buttons, values: { files } }) => (
         <Col>
           <Data>
             <Item>
-              Nome <Datum>Marco Antônio</Datum>
+              Nome <Datum>{values.personal.firstName}</Datum>
             </Item>
             <Item>
-              Sobrenome <Datum>Barão Neves</Datum>
+              Sobrenome <Datum>{values.personal.lastName}</Datum>
             </Item>
             <Item>
-              Nome Social <Datum>Não possui</Datum>
+              Nome Social
+              <Datum>{values.personal.assumedName || 'Não possui'}</Datum>
             </Item>
             <Item>
-              Data de nascimento <Datum>16/05/2000</Datum>
+              Data de nascimento <Datum>{values.personal.birthDate}</Datum>
             </Item>
             <Item>
-              Sexo <Datum>Masculino</Datum>
+              Sexo <Datum>{values.personal.gender}</Datum>
             </Item>
             <Item>
-              Naturalidade <Datum>Brasileira</Datum>
+              Naturalidade <Datum>{values.personal.countryBirth}</Datum>
             </Item>
             <Item>
-              Nacionalidade <Datum>Brasileira</Datum>
+              Nacionalidade <Datum>{values.personal.nationality}</Datum>
             </Item>
             <Item>
-              CPF <Datum>123.456.789-00</Datum>
+              CPF <Datum>{values.personal.documents.cpf}</Datum>
             </Item>
             <Item>
-              Raça <Datum>Branco</Datum>
+              Raça <Datum>{values.personal.race}</Datum>
             </Item>
             <Item>
-              Estado Civil <Datum>Solteiro(a)</Datum>
+              Estado Civil <Datum>{values.personal.marital}</Datum>
             </Item>
             <Item>
-              Tipo de Sangue <Datum>O+</Datum>
+              Tipo de Sangue <Datum>{values.personal.bloodType}</Datum>
             </Item>
             <Item>
-              Doador de órgãos? <Datum>Sim</Datum>
+              Doador de órgãos? <Datum>{values.personal.organDonor}</Datum>
             </Item>
           </Data>
         </Col>
         <Col>
           <Data>
             <Item>
-              Logradouro <Datum>Rua Prof. Almeida Prado</Datum>
+              Logradouro <Datum>{values.personal.address.street}</Datum>
             </Item>
             <Item>
-              Número <Datum>532</Datum>
+              Número <Datum>{values.personal.address.number}</Datum>
             </Item>
             <Item>
-              CEP <Datum>05508-280</Datum>
+              CEP <Datum>{values.personal.address.zip}</Datum>
             </Item>
             <Item>
-              Bairro <Datum>Buntantã</Datum>
+              Bairro <Datum>{values.personal.address.district}</Datum>
             </Item>
             <Item>
-              Cidade <Datum>São Paulo</Datum>
+              Cidade <Datum>{values.personal.address.city}</Datum>
             </Item>
             <Item>
-              Complemento <Datum>Prédio 1</Datum>
+              Estado <Datum>{values.personal.address.state}</Datum>
             </Item>
             <Item>
-              Celular <Datum>(11) 98422-6444</Datum>
+              Complemento{' '}
+              <Datum>
+                {values.personal.address.complement || 'Não possui'}
+              </Datum>
             </Item>
             <Item>
-              E-mail pessoal <Datum>marco.barao@outlook.com</Datum>
+              Celular <Datum>{values.personal.cellphone}</Datum>
+            </Item>
+            <Item>
+              E-mail pessoal <Datum>{values.personal.personalEmail}</Datum>
             </Item>
             <Item>
               E-mail profissional
-              <Datum>marco.neves@connectcom.univesp.br</Datum>
+              <Datum>{values.personal.professionalEmail}</Datum>
             </Item>
           </Data>
         </Col>
@@ -92,81 +101,116 @@ const StepSummary = ({ handleSubmit, buttons, values: { files } }) => (
         <Col>
           <Data>
             <Item>
-              Nome <Datum>Marco Antônio</Datum>
+              CNPJ <Datum>{values.instituition.cnpj}</Datum>
             </Item>
             <Item>
-              Sobrenome <Datum>Barão Neves</Datum>
+              Nome <Datum>{values.instituition.name}</Datum>
             </Item>
             <Item>
-              Nome Social <Datum>Não possui</Datum>
+              Telefone 1 <Datum>{values.instituition.phone[0]}</Datum>
             </Item>
             <Item>
-              Data de nascimento <Datum>16/05/2000</Datum>
+              Telefone 2
+              <Datum>{values.instituition.phone[1] || 'Não informado'}</Datum>
             </Item>
             <Item>
-              Sexo <Datum>Masculino</Datum>
+              Fax <Datum>{values.instituition.fax || 'Não informado'}</Datum>
             </Item>
             <Item>
-              Naturalidade <Datum>Brasileira</Datum>
+              Logradouro <Datum>{values.instituition.street}</Datum>
             </Item>
             <Item>
-              Nacionalidade <Datum>Brasileira</Datum>
+              Número <Datum>{values.instituition.number}</Datum>
             </Item>
             <Item>
-              CPF <Datum>123.456.789-00</Datum>
+              CEP <Datum>{values.instituition.cep}</Datum>
             </Item>
             <Item>
-              Raça <Datum>Branco</Datum>
+              Cidade <Datum>{values.instituition.city}</Datum>
             </Item>
             <Item>
-              Estado Civil <Datum>Solteiro(a)</Datum>
+              Estado <Datum>{values.instituition.federatedState}</Datum>
             </Item>
             <Item>
-              Tipo de Sangue <Datum>O+</Datum>
-            </Item>
-            <Item>
-              Doador de órgãos? <Datum>Sim</Datum>
+              Complemento
+              <Datum>{values.instituition.complement || 'Não possui'}</Datum>
             </Item>
           </Data>
         </Col>
+      </Row>
+      <Subtitle>Dados do Diretor/Coordenador responsável</Subtitle>
+      <Row>
         <Col>
           <Data>
             <Item>
-              Logradouro <Datum>Rua Prof. Almeida Prado</Datum>
+              Nome <Datum>{values.responsible.name}</Datum>
             </Item>
             <Item>
-              Número <Datum>532</Datum>
+              Telefone 1 <Datum>{values.responsible.phone[0]}</Datum>
             </Item>
             <Item>
-              CEP <Datum>05508-280</Datum>
+              Telefone 2
+              <Datum>{values.responsible.phone[1] || 'Não informado'}</Datum>
             </Item>
             <Item>
-              Bairro <Datum>Buntantã</Datum>
+              E-mail institucional
+              <Datum>{values.responsible.email}</Datum>
+            </Item>
+          </Data>
+        </Col>
+      </Row>
+      <Subtitle>Dados do Professor regente</Subtitle>
+      <Row>
+        <Col>
+          <Data>
+            <Item>
+              Nome <Datum>{values.regent.name}</Datum>
             </Item>
             <Item>
-              Cidade <Datum>São Paulo</Datum>
+              Telefone 1 <Datum>{values.regent.phone[0]}</Datum>
             </Item>
             <Item>
-              Complemento <Datum>Prédio 1</Datum>
+              Telefone 2
+              <Datum>{values.regent.phone[1] || 'Não informado'}</Datum>
             </Item>
             <Item>
-              Celular <Datum>(11) 98422-6444</Datum>
+              E-mail institucional
+              <Datum>{values.regent.email}</Datum>
+            </Item>
+          </Data>
+        </Col>
+      </Row>
+      <Subtitle>Dados do Orientador de Estágio</Subtitle>
+      <Row>
+        <Col>
+          <Data>
+            <Item>
+              Nome <Datum>{values.advisor.name}</Datum>
             </Item>
             <Item>
-              E-mail pessoal <Datum>marco.barao@outlook.com</Datum>
+              Telefone 1 <Datum>{values.advisor.phone[0]}</Datum>
             </Item>
             <Item>
-              E-mail profissional
-              <Datum>marco.neves@connectcom.univesp.br</Datum>
+              Telefone 2
+              <Datum>{values.advisor.phone[1] || 'Não informado'}</Datum>
+            </Item>
+            <Item>
+              E-mail institucional
+              <Datum>{values.advisor.email}</Datum>
             </Item>
           </Data>
         </Col>
       </Row>
       <Subtitle>Documentos</Subtitle>
       <Row width="100%">
-        {Object.keys(files).map(file => (
+        {Object.keys(values.files).map(file => (
           <Col>
-            <Document key={file} name={dict[file]} document={file} file={files[file]} />
+            <Document
+              key={file}
+              name={dict[file]}
+              document={file}
+              file={values.files[file]}
+            />
           </Col>
         ))}
       </Row>
