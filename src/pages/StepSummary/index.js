@@ -10,6 +10,10 @@ const dict = {
   activities: 'Relatório de atividades'
 };
 
+const bloodType = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+const race = ['Negro(a)', 'Pardo(a)', 'Amarelo(a)', 'Indígena', 'Branco(a)'];
+const marital = ['Solteiro(a)', 'Casado(a)', 'Divorciado(a)', 'Viúvo(a)'];
+
 const StepSummary = ({ handleSubmit, buttons, values }) => (
   <Formik onSubmit={handleSubmit}>
     <Form>
@@ -44,16 +48,18 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
               CPF <Datum>{values.personal.documents.cpf}</Datum>
             </Item>
             <Item>
-              Raça <Datum>{values.personal.race}</Datum>
+              Raça <Datum>{race[values.personal.race]}</Datum>
             </Item>
             <Item>
-              Estado Civil <Datum>{values.personal.marital}</Datum>
+              Estado Civil <Datum>{marital[values.personal.marital]}</Datum>
             </Item>
             <Item>
-              Tipo de Sangue <Datum>{values.personal.bloodType}</Datum>
+              Tipo de Sanguíneo{' '}
+              <Datum>{bloodType[values.personal.bloodType]}</Datum>
             </Item>
             <Item>
-              Doador de órgãos? <Datum>{values.personal.organDonor}</Datum>
+              Doador de órgãos?{' '}
+              <Datum>{values.personal.organDonor ? 'Sim' : 'Não'}</Datum>
             </Item>
           </Data>
         </Col>

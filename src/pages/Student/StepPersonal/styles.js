@@ -13,6 +13,7 @@ const Row = styled.div`
 const Col = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 60px;
   padding: 10px;
   margin: 2px;
   border: 1px solid var(--gray-lighten);

@@ -207,6 +207,7 @@ class StudentForm extends Component {
     const steps = [
       <StepPersonal
         handleSubmit={this.submit}
+        values={values}
         buttons={this.renderButtons()}
       />,
       <StepGrantor

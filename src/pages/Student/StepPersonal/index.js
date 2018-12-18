@@ -3,17 +3,17 @@ import { Formik, Form } from 'formik';
 
 import { Title, Row, Col, Datum } from './styles';
 
-const StepPersonal = ({handleSubmit, buttons}) => (
-  <Formik
-    onSubmit={handleSubmit}
-  >
+const StepPersonal = ({ handleSubmit, buttons, values }) => (
+  <Formik onSubmit={handleSubmit}>
     <Form>
       <Title>Dados Pessoais</Title>
       <Row>
         <Col>
           <Datum>
             Nome Civil
-            <span>Marco Antônio Barão Neves</span>
+            <span>
+              {values.personal.firstName} {values.personal.lastName}
+            </span>
           </Datum>
         </Col>
       </Row>
@@ -21,7 +21,7 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             Nome Social
-            <span>Não possui</span>
+            <span>{values.personal.assumedName || 'Não possui'}</span>
           </Datum>
         </Col>
       </Row>
@@ -29,19 +29,19 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             Documento de Identidade
-            <span>12.345.678-9</span>
+            <span>{values.personal.documents.rg.number}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Emissor/Estado
-            <span>SSP</span>
+            <span>{values.personal.documents.rg.issuer}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Nacionalidade
-            <span>Brasileira</span>
+            <span>{values.personal.nationality}</span>
           </Datum>
         </Col>
       </Row>
@@ -49,19 +49,23 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             CPF
-            <span>123.456.789-00</span>
+            <span>{values.personal.documents.cpf}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Titulo de Eleitor
-            <span>458879564132879256328</span>
+            <span>
+              {values.personal.documents.electoralCard || 'Não Possui'}
+            </span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Certificado de Reservista
-            <span>74836721632178989316</span>
+            <span>
+              {values.personal.documents.certificateReservist || 'Não Possui'}
+            </span>
           </Datum>
         </Col>
       </Row>
@@ -69,19 +73,19 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             Cidade de Nascimento
-            <span>São Paulo</span>
+            <span>{values.personal.address.city}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Naturalidade
-            <span>Brasileira</span>
+            <span>{values.personal.countryBirth}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Data de Nascimento
-            <span>16/05/2000</span>
+            <span>{values.personal.birthDate}</span>
           </Datum>
         </Col>
       </Row>
@@ -89,7 +93,7 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             Nome da Mãe
-            <span>Lucia Maria Barão Neves</span>
+            <span>Joyce da Silva Pereira</span>
           </Datum>
         </Col>
       </Row>
@@ -97,7 +101,7 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             Nome do Pai
-            <span>Marcio Ferreira Neves</span>
+            <span>Cidescleison Rodrigues Sá</span>
           </Datum>
         </Col>
       </Row>
@@ -105,7 +109,10 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             Endereço Residencial (com complementos)
-            <span>Av. Prof. Almeida Prado, 532 - Prédio 1</span>
+            <span>
+              {values.personal.address.street}, {values.personal.address.number}
+              {values.personal.address.complement}
+            </span>
           </Datum>
         </Col>
       </Row>
@@ -113,25 +120,25 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             CEP
-            <span>05508-280</span>
+            <span>{values.personal.address.zip}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Bairro
-            <span>Butantã</span>
+            <span>{values.personal.address.district}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Cidade
-            <span>São Paulo</span>
+            <span>{values.personal.address.city}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Estado
-            <span>São Paulo</span>
+            <span>{values.personal.address.state}</span>
           </Datum>
         </Col>
       </Row>
@@ -139,13 +146,13 @@ const StepPersonal = ({handleSubmit, buttons}) => (
         <Col>
           <Datum>
             E-mail Pessoal
-            <span>marco.barao@outlook.com</span>
+            <span>{values.personal.personalEmail}</span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Telefone
-            <span>(11) 98422-6444</span>
+            <span>{values.personal.cellphone}</span>
           </Datum>
         </Col>
       </Row>
