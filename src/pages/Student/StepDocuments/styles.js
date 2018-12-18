@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import { ErrorMessage } from 'formik';
 
 const Title = styled.h2`
   display: block;
   font-size: 1.7rem;
-  margin: 5vh 0 1rem;
+  margin: 5vh 0;
 `;
 
 const Row = styled.div`
@@ -14,7 +15,8 @@ const Row = styled.div`
 const Col = styled.div`
   width: ${({ width }) => width || '100%'};
   height: 100%;
-  border: 1px dashed #c4d1d6;
+  border: 1px dashed var(--gray);
+  text-align: center;
   &:not(:last-of-type) {
     margin-right: 5%;
   }
@@ -33,17 +35,22 @@ const Document = styled.h3`
   width: 100%;
   height: 30px;
   line-height: 30px;
-  color: #fff;
-  background-color: #607989;
+  color: var(--zero);
+  letter-spacing: 0.05rem;
+  font-size: 1.1rem;
+  background-color: var(--gray-darken);
   text-transform: uppercase;
   margin: 0;
 `;
 
-const Text = styled.p``;
+const Text = styled.p`
+  font-weight: 500;
+`;
 
 const Accepted = styled.span`
+  display: block;
   font-size: 0.8rem;
-  color: #c4d1d6;
+  color: var(--gray);
 `;
 
 const Icon = styled.img`
@@ -51,6 +58,13 @@ const Icon = styled.img`
   width: 80px;
   height: 80px;
   margin: 1rem auto;
+`;
+
+const Error = styled(ErrorMessage)`
+  display: inline-block;
+  color: var(--zero);
+  background-color: var(--red);
+  padding: 10px;
 `;
 
 const Field = styled.input`
@@ -63,8 +77,8 @@ const Button = styled.a`
   height: 30px;
   line-height: 30px;
   margin: 0 auto 0.5rem;
-  background-color: #fff;
-  border: 1px solid #354551;
+  background-color: var(--zero);
+  border: 1px solid var(--black-lighten);
   cursor: pointer;
 `;
 
@@ -77,6 +91,7 @@ export {
   Text,
   Accepted,
   Icon,
+  Error,
   Field,
   Button
 };

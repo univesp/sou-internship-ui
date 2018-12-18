@@ -36,7 +36,7 @@ const Data = styled.ul`
 const Item = styled.li`
   display: flex;
   font-size: 1rem;
-  color: #354551;
+  color: var(--black-lighten);
   justify-content: space-between;
   font-weight: 600;
 `;

@@ -13,15 +13,16 @@ const Row = styled.div`
 const Col = styled.div`
   width: 100%;
   height: 100%;
+  min-height: 60px;
   padding: 10px;
   margin: 2px;
-  border: 1px solid rgb(235, 241, 242);
+  border: 1px solid var(--gray-lighten);
 `;
 
 const Datum = styled.label`
   font-weight: 600;
   font-size: 0.8rem;
-  color: #7a8d9c;
+  color: var(--gray);
   span {
     display: block;
     font-size: 1rem;

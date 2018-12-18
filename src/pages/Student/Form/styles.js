@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
 
 const Container = styled.div`
   width: 100%;
@@ -19,8 +18,6 @@ const Subtitle = styled.h4`
   margin: 0 0 5vh;
 `;
 
-const Forms = styled(Form)``;
-
 const GroupButton = styled.div`
   margin-top: 6vh;
   display: flex;
@@ -28,15 +25,15 @@ const GroupButton = styled.div`
 `;
 
 const Button = styled.button`
-  background-color: ${props => (props.primary ? '#FFFFFF' : '#D13239')};
-  border: 1px solid #d13239;
+  background-color: ${props => (props.primary ? 'var(--zero)' : 'var(--red)')};
+  border: 1px solid var(--red);
   padding: 0.5rem 1rem;
   text-transform: uppercase;
-  color: ${props => (props.primary ? '#D13239' : '#FFFFFF')};
+  color: ${props => (props.primary ? 'var(--red)' : 'var(--zero)')};
   cursor: pointer;
   &:not(:last-of-type) {
     margin-right: 0.8rem;
   }
 `;
 
-export { Container, Title, Subtitle, Forms, GroupButton, Button };
+export { Container, Title, Subtitle, GroupButton, Button };

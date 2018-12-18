@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Image = styled.img`
   width: 250px;
@@ -7,9 +7,8 @@ const Image = styled.img`
 
 const Card = styled.div`
   width: 100%;
-  min-width: 341px;
   height: 100%;
-  min-height: 311px; 
+  min-height: 311px;
   box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 
@@ -40,8 +39,12 @@ const Icon = styled.i`
   height: 24px;
   background-image: url(${props => props.icon});
   background-repeat: no-repeat;
-  ${props => props.action && css`cursor: pointer;`}
-  &:not(:last-of-type) {
+  ${props =>
+    props.action &&
+    css`
+      cursor: pointer;
+    `}
+  &:not(:last-child) {
     margin-right: 10px;
   }
 `;
@@ -65,7 +68,7 @@ const FooterCard = styled.div`
   margin-top: 1rem;
   padding-left: 25px;
   align-items: center;
-  border-top: 1px solid #DFE6E8;
+  border-top: 1px solid var(--gray-lighten);
 `;
 
 const FileName = styled.p`
