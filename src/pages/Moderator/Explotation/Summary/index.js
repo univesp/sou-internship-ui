@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import StepSummary from '../../../StepSummary';
-import { Formik, Form } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import Alert from 'react-s-alert';
 
 import {
@@ -114,6 +115,7 @@ class Summary extends Component {
             placeholder="Digite aqui..."
             name="justification"
           />
+          <ErrorMessage name="justification" component="span" />
         </Label>
         <GroupButton>
           <Button primary type="submit">
@@ -123,6 +125,25 @@ class Summary extends Component {
       </Fragment>
     );
   }
+
+  getValidationSchema = () => {
+    const { overrule } = this.state;
+    return overrule
+      ? Yup.object().shape({
+          hours: Yup.number('')
+            .integer('A quantidade de horas deve ser inteira')
+            .positive('A quantidade de horas deve ser positiva'),
+          justification: Yup.string()
+            .min(10, 'Escreva uma justificativa com mais de 10 caracteres')
+            .required('É obrigatório escrever uma justificativa')
+        })
+      : Yup.object().shape({
+          hours: Yup.number('')
+            .integer('A quantidade de horas deve ser inteira')
+            .positive('A quantidade de horas deve ser positiva'),
+          justification: Yup.string()
+        });
+  };
 
   render() {
     const { process, overrule } = this.state;
@@ -137,6 +158,7 @@ class Summary extends Component {
             hours: 0,
             justification: ''
           }}
+          validationSchema={this.getValidationSchema}
         >
           <Form>
             <Area>
@@ -145,12 +167,13 @@ class Summary extends Component {
                 aluno
                 <Field name="hours" type="number" min="0" /> horas comprovadas.
               </Text>
+              <ErrorMessage name="hours" component="span" />
             </Area>
             <GroupButton>
               <Button secondary onClick={this.overrule}>
                 Indeferir
               </Button>
-              <Button primary type="submit" onClick={this.handleSubmit}>
+              <Button primary type="submit">
                 Deferir
               </Button>
             </GroupButton>
