@@ -118,9 +118,11 @@ class StudentForm extends Component {
       JSON.parse(localStorage.getItem('state')) || this.state;
 
     const resPersonal = await api.get('/student/1');
+    const resGrantor = await api.get('grantor');
 
     this.setState({
       step: Math.min(step, 2),
+      grantorOptions: resGrantor.data.institution,
       values: {
         ...values,
         personal: {
@@ -201,7 +203,7 @@ class StudentForm extends Component {
   }
 
   render() {
-    const { step, options, values } = this.state;
+    const { step, grantorOptions, values } = this.state;
     const steps = [
       <StepPersonal
         handleSubmit={this.submit}
@@ -209,9 +211,9 @@ class StudentForm extends Component {
       />,
       <StepGrantor
         handleSubmit={this.submit}
-        options={options}
         saveChanges={this.saveOnLocalStorage}
         initialValues={values}
+        grantorOptions={grantorOptions}
         buttons={this.renderButtons()}
       />,
       <StepDocuments

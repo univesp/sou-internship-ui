@@ -117,6 +117,7 @@ class StepGrantor extends Component {
     const {
       options,
       handleSubmit,
+      grantorOptions,
       buttons,
       initialValues: {
         grantorSelected,
@@ -150,16 +151,24 @@ class StepGrantor extends Component {
                   name="grantorSelected"
                   component={({ field, form }) => (
                     <Select
-                      options={options}
+                      options={grantorOptions}
+                      getOptionLabel={option => option.name}
+                      getOptionValue={option => option.id}
                       name={field.name}
                       placeholder="Busque por uma instituição..."
-                      value={
-                        options
-                          ? options.find(option => option.value === field.value)
-                          : ''
-                      }
+                      value={field.value}
                       onChange={option => {
-                        form.setFieldValue(field.name, option.value || null);
+                        setFieldValue(field.name, option);
+                        setFieldValue('instituition.cnpj', option.cnpj);
+                        setFieldValue('instituition.name', option.name);
+                        setFieldValue('instituition.phone[0]', option.phone[0]);
+                        setFieldValue('instituition.phone[1]', option.phone[1]);
+                        setFieldValue('instituition.fax', option.fax);
+                        setFieldValue('instituition.cep', option.cep);
+                        setFieldValue('instituition.number', option.number);
+                        const e = { target: { value: option.cep } };
+                        this.handleCep(e, setFieldValue);
+                        saveChanges(values);
                       }}
                       styles={colourStyles}
                       theme={theme => ({
@@ -173,10 +182,6 @@ class StepGrantor extends Component {
                           neutral20: 'rgb(196, 209, 214)'
                         }
                       })}
-                      onBlur={e => {
-                        field.onBlur(e);
-                        saveChanges(values);
-                      }}
                     />
                   )}
                 />
