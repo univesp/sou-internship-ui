@@ -37,11 +37,6 @@ const stepper = [
 class StudentForm extends Component {
   state = {
     step: 0,
-    options: [
-      { value: 1, label: 'Univesidade de São Paulo' },
-      { value: 2, label: 'Universidade da Bahia' },
-      { value: 3, label: 'Universidade do Paraná' }
-    ],
     values: {
       grantorSelected: {},
       personal: {
@@ -95,12 +90,7 @@ class StudentForm extends Component {
         phone: [],
         email: ''
       },
-      regent: {
-        name: '',
-        phone: [],
-        email: ''
-      },
-      advisor: {
+      professor: {
         name: '',
         phone: [],
         email: ''

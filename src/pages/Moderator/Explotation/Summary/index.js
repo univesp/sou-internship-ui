@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import StepSummary from '../../../StepSummary';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import Modal from 'react-modal';
 import Alert from 'react-s-alert';
 
 import {
@@ -17,9 +18,12 @@ import {
   Textarea
 } from './styles';
 
+Modal.setAppElement('#root')
+
 class Summary extends Component {
   state = {
     overrule: false,
+    modal: false,
     process: {
       personal: {
         firstName: 'Alice',
@@ -71,16 +75,10 @@ class Summary extends Component {
         phone: ['(12) 3123-12321'],
         email: 'dasdsa@dasda.com'
       },
-      regent: {
+      professor: {
         name: 'saddwqsa',
         phone: ['(21) 3213-12312'],
         email: 'dsadsa@dasdsa.com'
-      },
-      advisor: {
-        name: 'asddwqdsa',
-        phone: ['(12) 3123-12312'],
-        email: 'dqwdsa@das.com',
-        department: 'asdsadsadsadas'
       },
       files: {
         work: {},
@@ -90,9 +88,18 @@ class Summary extends Component {
     }
   };
 
+  openModal = e => {
+    this.setState({ modal: true });
+  }
+
+  closeModal = e => {
+    this.setState({ modal: false, overrule: false });
+  }
+
   overrule = e => {
     e.preventDefault();
     this.setState({ overrule: true });
+    this.openModal(e);
   };
 
   submit = values => {
@@ -107,38 +114,42 @@ class Summary extends Component {
 
   renderJustification() {
     return (
-      <Fragment>
-        <Label>
-          Justificativa para indeferimento<span>*</span>
-          <Textarea
-            component="textarea"
-            placeholder="Digite aqui..."
-            name="justification"
-          />
-          <ErrorMessage name="justification" component="span" />
-        </Label>
-        <GroupButton>
-          <Button primary type="submit">
-            Salvar
-          </Button>
-        </GroupButton>
-      </Fragment>
+      <Label>
+        Justificativa para indeferimento<span>*</span>
+        <Textarea
+          component="textarea"
+          placeholder="Digite aqui..."
+          name="justification"
+        />
+        <ErrorMessage name="justification" component="span" />
+      </Label>
     );
+  }
+
+  renderHours() {
+    return (
+    <Area>
+      <Text>
+        Neste processo de aproveitamento de estágio são conferidos ao
+        aluno
+        <Field name="hours" type="number" min="0" /> horas comprovadas.
+      </Text>
+      <ErrorMessage name="hours" component="span" />
+    </Area>
+    )
   }
 
   getValidationSchema = () => {
     const { overrule } = this.state;
     return overrule
       ? Yup.object().shape({
-          hours: Yup.number('')
-            .integer('A quantidade de horas deve ser inteira')
-            .positive('A quantidade de horas deve ser positiva'),
+          hours: Yup.number(),
           justification: Yup.string()
             .min(10, 'Escreva uma justificativa com mais de 10 caracteres')
             .required('É obrigatório escrever uma justificativa')
         })
       : Yup.object().shape({
-          hours: Yup.number('')
+          hours: Yup.number()
             .integer('A quantidade de horas deve ser inteira')
             .positive('A quantidade de horas deve ser positiva'),
           justification: Yup.string()
@@ -146,13 +157,38 @@ class Summary extends Component {
   };
 
   render() {
-    const { process, overrule } = this.state;
+    const { process, overrule, modal } = this.state;
     return (
       <Container>
-        <Title>Nome da Disciplina deEstágio</Title>
+        <Title>Nome da Disciplina de Estágio</Title>
         <Subtitle>Semestre e ano de oferta</Subtitle>
         <StepSummary values={process} />
-        <Formik
+        <GroupButton>
+          <Button secondary onClick={this.overrule}>
+            Indeferir
+          </Button>
+          <Button primary onClick={this.openModal}>
+            Deferir
+          </Button>
+        </GroupButton>
+        <Modal
+          isOpen={modal}
+          onRequestClose={this.closeModal}
+          contentLabel="Forneça os dados requiridos"
+          style={{
+            content: {
+              width: 900,
+              height: overrule ? 460 : 350,
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              marginRight: '-50%',
+              transform: 'translate(-50%, -50%)'
+            }
+          }}
+        >
+          <Formik
           onSubmit={this.submit}
           initialValues={{
             hours: 0,
@@ -161,25 +197,19 @@ class Summary extends Component {
           validationSchema={this.getValidationSchema}
         >
           <Form>
-            <Area>
-              <Text>
-                Neste processo de aproveitamento de estágio são conferidos ao
-                aluno
-                <Field name="hours" type="number" min="0" /> horas comprovadas.
-              </Text>
-              <ErrorMessage name="hours" component="span" />
-            </Area>
+            <Subtitle ref={subtitle => this.subtitle = subtitle}>Preencha a {overrule ? 'justificativa para indeferimento' : 'quantidade de horas aproveitadas'}</Subtitle>
+            {overrule ? this.renderJustification() : this.renderHours()}
             <GroupButton>
-              <Button secondary onClick={this.overrule}>
-                Indeferir
+              <Button secondary onClick={this.closeModal}>
+                Cancelar
               </Button>
               <Button primary type="submit">
-                Deferir
+                Salvar
               </Button>
             </GroupButton>
-            {overrule ? this.renderJustification() : null}
           </Form>
         </Formik>
+        </Modal>
       </Container>
     );
   }

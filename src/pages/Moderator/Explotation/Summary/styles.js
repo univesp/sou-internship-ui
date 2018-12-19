@@ -38,11 +38,12 @@ const Button = styled.button`
 `;
 
 const Area = styled.div`
-  width: 80%;
-  text-align: center;
+  width: 100%;
   padding: 2rem 0;
-  margin: 10vh 0 0;
-  border: 1px solid var(--red);
+  margin: 8vh 0 0;
+  span {
+    color: var(--red);
+  }
 `;
 
 const MyField = styled(Field)`
@@ -61,9 +62,8 @@ const Label = styled.label`
   display: block;
   width: 100%;
   margin-top: 3vh;
+  margin-bottom: 6vh;
   padding-top: 3vh;
-  border-top: 4px dashed #000;
-  color: var(--gray-darken);
   span {
     color: var(--red);
   }
@@ -72,7 +72,10 @@ const Label = styled.label`
 const Textarea = styled(Field)`
   display: block;
   width: 100%;
-  height: 200px;
+  max-width: 900px;
+  min-height: 200px;
+  max-height: 200px;
+  margin: 6vh auto 0;
 `;
 
 export {
