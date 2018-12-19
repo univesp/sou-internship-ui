@@ -104,11 +104,11 @@ class TableComponent extends Component {
                 .filter(item => item.status === tab)
                 .filter(
                   item =>
-                    RegExp(search).test(item.name) ||
-                    RegExp(search).test(item.course)
+                    RegExp(search).test(item.name, 'i') ||
+                    RegExp(search).test(item.course, 'i')
                 )
                 .map(item => (
-                  <Row>
+                  <Row key={item.id}>
                     <Td>
                       <Avatar avatar={item.avatar} />
                     </Td>

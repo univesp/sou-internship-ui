@@ -29,7 +29,12 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Datum>
             Documento de Identidade
-            <span>{values.personal.documents.rg.number}</span>
+            <span>
+              {values.personal.documents.rg.number.replace(
+                /^(\d{2})(\d{3})(\d{3})(\d{1}).*/,
+                '$1.$2.$3-$4'
+              )}
+            </span>
           </Datum>
         </Col>
         <Col>
@@ -49,14 +54,22 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Datum>
             CPF
-            <span>{values.personal.documents.cpf}</span>
+            <span>
+              {values.personal.documents.cpf.replace(
+                /^(\d{3})(\d{3})(\d{3})(\d{2}).*/,
+                '$1.$2.$3-$4'
+              )}
+            </span>
           </Datum>
         </Col>
         <Col>
           <Datum>
             Titulo de Eleitor
             <span>
-              {values.personal.documents.electoralCard || 'Não Possui'}
+              {values.personal.documents.electoralCard.replace(
+                /^(\d{4})(\d{4})(\d{4})(\d{2}).*/,
+                '$1 $2 $3 $4'
+              ) || 'Não Possui'}
             </span>
           </Datum>
         </Col>
@@ -85,7 +98,12 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Datum>
             Data de Nascimento
-            <span>{values.personal.birthDate}</span>
+            <span>
+              {values.personal.birthDate.replace(
+                /^(\d{4})-(\d{2})-(\d{2}).*/,
+                '$3/$2/$1'
+              )}
+            </span>
           </Datum>
         </Col>
       </Row>
@@ -93,7 +111,7 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Datum>
             Nome da Mãe
-            <span>Joyce da Silva Pereira</span>
+            <span>{values.personal.parents.motherName}</span>
           </Datum>
         </Col>
       </Row>
@@ -101,7 +119,7 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Datum>
             Nome do Pai
-            <span>Cidescleison Rodrigues Sá</span>
+            <span>{values.personal.parents.fatherName}</span>
           </Datum>
         </Col>
       </Row>
@@ -110,8 +128,9 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
           <Datum>
             Endereço Residencial (com complementos)
             <span>
-              {values.personal.address.street}, {values.personal.address.number}
-              {values.personal.address.complement}
+              {`${values.personal.address.street}, ${
+                values.personal.address.number
+              } ${values.personal.address.complement || ''}`}
             </span>
           </Datum>
         </Col>
@@ -120,7 +139,12 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Datum>
             CEP
-            <span>{values.personal.address.zip}</span>
+            <span>
+              {values.personal.address.zip.replace(
+                /^(\d{5})(\d{3}).*/,
+                '$1-$2'
+              )}
+            </span>
           </Datum>
         </Col>
         <Col>
@@ -152,7 +176,12 @@ const StepPersonal = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Datum>
             Telefone
-            <span>{values.personal.cellphone}</span>
+            <span>
+              {values.personal.cellphone.replace(
+                /^(\d{2})(\d{5})(\d{4}).*/,
+                '($1) $2-$3'
+              )}
+            </span>
           </Datum>
         </Col>
       </Row>

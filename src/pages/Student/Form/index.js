@@ -63,6 +63,10 @@ class StudentForm extends Component {
           electoralCard: '',
           certificateReservist: ''
         },
+        parents: {
+          motherName: '',
+          fatherName: ''
+        },
         address: {
           street: '',
           number: '',
@@ -73,12 +77,12 @@ class StudentForm extends Component {
           complement: ''
         }
       },
-      instituition: {
+      grantor: {
         cnpj: '',
         name: '',
         phone: [],
         fax: '',
-        cep: '',
+        zip: '',
         street: '',
         complement: '',
         number: '',
@@ -108,24 +112,20 @@ class StudentForm extends Component {
       JSON.parse(localStorage.getItem('state')) || this.state;
 
     const resPersonal = await api.get('/student/1');
+    const resProfessor = await api.get('/professor/1');
     const resGrantor = await api.get('grantor');
+
+    console.log(resPersonal.data);
 
     this.setState({
       step: Math.min(step, 2),
-      grantorOptions: resGrantor.data.institution,
+      grantorOptions: resGrantor.data.grantors,
       values: {
         ...values,
         personal: {
-          ...resPersonal.data.studentData[0],
-          address: {
-            street: 'Rua da Vitória',
-            number: '66',
-            zip: '07600-100',
-            district: 'Anhangabau',
-            city: 'São Paulo',
-            state: 'SP'
-          }
+          ...resPersonal.data.studentData[0]
         },
+        professor: { ...resProfessor.data.professor[0] },
         files: {
           work: null,
           explotation: null,

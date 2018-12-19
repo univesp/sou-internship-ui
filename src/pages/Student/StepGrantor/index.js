@@ -36,14 +36,14 @@ class StepGrantor extends Component {
       uf: federatedState
     } = res.data;
 
-    setFieldValue('instituition.street', street);
-    setFieldValue('instituition.city', city);
-    setFieldValue('instituition.federatedState', federatedState);
+    setFieldValue('grantor.street', street);
+    setFieldValue('grantor.city', city);
+    setFieldValue('grantor.federatedState', federatedState);
   };
 
   getValidationSchema = () =>
     Yup.object().shape({
-      instituition: Yup.object().shape({
+      grantor: Yup.object().shape({
         cnpj: Yup.string().required('O campo CNPJ é obrigatório'),
         name: Yup.string()
           .min(4, 'Nome muito pequeno')
@@ -53,7 +53,7 @@ class StepGrantor extends Component {
           .of(Yup.string())
           .compact()
           .min(1, 'Preencha ao menos um campo de telefone'),
-        cep: Yup.string().required('O campo de CEP é obrigatório'),
+        zip: Yup.string().required('O campo de CEP é obrigatório'),
         street: Yup.string()
           .min(4, 'Nome de logradouro muito pequeno')
           .max(25, 'Nome de logradouro muito grande')
@@ -101,12 +101,7 @@ class StepGrantor extends Component {
       handleSubmit,
       grantorOptions,
       buttons,
-      initialValues: {
-        grantorSelected,
-        instituition,
-        responsible,
-        professor
-      },
+      initialValues: { grantorSelected, grantor, responsible, professor },
       saveChanges
     } = this.props;
 
@@ -116,7 +111,7 @@ class StepGrantor extends Component {
         validationSchema={this.getValidationSchema}
         initialValues={{
           grantorSelected,
-          instituition,
+          grantor,
           professor,
           responsible
         }}
@@ -139,14 +134,14 @@ class StepGrantor extends Component {
                       value={field.value}
                       onChange={option => {
                         setFieldValue(field.name, option);
-                        setFieldValue('instituition.cnpj', option.cnpj);
-                        setFieldValue('instituition.name', option.name);
-                        setFieldValue('instituition.phone[0]', option.phone[0]);
-                        setFieldValue('instituition.phone[1]', option.phone[1]);
-                        setFieldValue('instituition.fax', option.fax);
-                        setFieldValue('instituition.cep', option.cep);
-                        setFieldValue('instituition.number', option.number);
-                        const e = { target: { value: option.cep } };
+                        setFieldValue('grantor.cnpj', option.cnpj);
+                        setFieldValue('grantor.name', option.name);
+                        setFieldValue('grantor.phone[0]', option.phone[0]);
+                        setFieldValue('grantor.phone[1]', option.phone[1]);
+                        setFieldValue('grantor.fax', option.fax);
+                        setFieldValue('grantor.zip', option.zip);
+                        setFieldValue('grantor.number', option.number);
+                        const e = { target: { value: option.zip } };
                         this.handleCep(e, setFieldValue);
                         saveChanges(values);
                       }}
@@ -172,7 +167,7 @@ class StepGrantor extends Component {
                 <Label>
                   CNPJ<span>*</span>
                   <Field
-                    name="instituition.cnpj"
+                    name="grantor.cnpj"
                     render={({ field }) => (
                       <InputMask
                         {...field}
@@ -180,25 +175,29 @@ class StepGrantor extends Component {
                         maskChar={null}
                         onBlur={e => {
                           field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
                           saveChanges(values);
                         }}
                       />
                     )}
                   />
-                  <ErrorMessage name="instituition.cnpj" component="span" />
+                  <ErrorMessage name="grantor.cnpj" component="span" />
                 </Label>
               </Col>
               <Col>
                 <Label>
                   Nome<span>*</span>
                   <Field
-                    name="instituition.name"
+                    name="grantor.name"
                     onBlur={e => {
                       handleBlur(e);
                       saveChanges(values);
                     }}
                   />
-                  <ErrorMessage name="instituition.name" component="span" />
+                  <ErrorMessage name="grantor.name" component="span" />
                 </Label>
               </Col>
             </Row>
@@ -207,7 +206,7 @@ class StepGrantor extends Component {
                 <Label>
                   Telefone 1<span>*</span>
                   <Field
-                    name="instituition.phone[0]"
+                    name="grantor.phone[0]"
                     render={({ field }) => (
                       <InputMask
                         {...field}
@@ -216,19 +215,23 @@ class StepGrantor extends Component {
                         maskChar={null}
                         onBlur={e => {
                           field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
                           saveChanges(values);
                         }}
                       />
                     )}
                   />
-                  <ErrorMessage name="instituition.phone" component="span" />
+                  <ErrorMessage name="grantor.phone" component="span" />
                 </Label>
               </Col>
               <Col>
                 <Label>
                   Telefone 2
                   <Field
-                    name="instituition.phone[1]"
+                    name="grantor.phone[1]"
                     render={({ field }) => (
                       <InputMask
                         {...field}
@@ -237,6 +240,10 @@ class StepGrantor extends Component {
                         maskChar={null}
                         onBlur={e => {
                           field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
                           saveChanges(values);
                         }}
                       />
@@ -248,7 +255,7 @@ class StepGrantor extends Component {
                 <Label>
                   FAX
                   <Field
-                    name="instituition.fax"
+                    name="grantor.fax"
                     render={({ field }) => (
                       <InputMask
                         {...field}
@@ -257,6 +264,10 @@ class StepGrantor extends Component {
                         maskChar={null}
                         onBlur={e => {
                           field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
                           saveChanges(values);
                         }}
                       />
@@ -270,7 +281,7 @@ class StepGrantor extends Component {
                 <Label>
                   CEP<span>*</span>
                   <Field
-                    name="instituition.cep"
+                    name="grantor.zip"
                     render={({ field }) => (
                       <InputMask
                         {...field}
@@ -279,13 +290,17 @@ class StepGrantor extends Component {
                           e.preventDefault();
                           this.handleCep(e, setFieldValue);
                           field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
                           saveChanges(values);
                         }}
                         maskChar={null}
                       />
                     )}
                   />
-                  <ErrorMessage name="instituition.cep" component="span" />
+                  <ErrorMessage name="grantor.zip" component="span" />
                 </Label>
               </Col>
             </Row>
@@ -294,21 +309,21 @@ class StepGrantor extends Component {
                 <Label>
                   Logradouro<span>*</span>
                   <Field
-                    name="instituition.street"
+                    name="grantor.street"
                     onBlur={e => {
                       handleBlur(e);
                       saveChanges(values);
                     }}
-                    tabindex="-1"
+                    tabIndex="-1"
                   />
-                  <ErrorMessage name="instituition.street" component="span" />
+                  <ErrorMessage name="grantor.street" component="span" />
                 </Label>
               </Col>
               <Col width="35%">
                 <Label>
                   Complemento
                   <Field
-                    name="instituition.complement"
+                    name="grantor.complement"
                     onBlur={e => {
                       handleBlur(e);
                       saveChanges(values);
@@ -319,37 +334,37 @@ class StepGrantor extends Component {
               <Col width="10%">
                 <Label>
                   Número<span>*</span>
-                  <Field name="instituition.number" />
-                  <ErrorMessage name="instituition.number" component="span" />
+                  <Field name="grantor.number" />
+                  <ErrorMessage name="grantor.number" component="span" />
                 </Label>
               </Col>
               <Col width="30%">
                 <Label>
                   Cidade<span>*</span>
                   <Field
-                    name="instituition.city"
+                    name="grantor.city"
                     onBlur={e => {
                       handleBlur(e);
                       saveChanges(values);
                     }}
-                    tabindex="-1"
+                    tabIndex="-1"
                   />
-                  <ErrorMessage name="instituition.city" component="span" />
+                  <ErrorMessage name="grantor.city" component="span" />
                 </Label>
               </Col>
               <Col width="8%">
                 <Label>
                   UF<span>*</span>
                   <Field
-                    name="instituition.federatedState"
+                    name="grantor.federatedState"
                     onBlur={e => {
                       handleBlur(e);
                       saveChanges(values);
                     }}
-                    tabindex="-1"
+                    tabIndex="-1"
                   />
                   <ErrorMessage
-                    name="instituition.federatedState"
+                    name="grantor.federatedState"
                     component="span"
                   />
                 </Label>
@@ -383,6 +398,13 @@ class StepGrantor extends Component {
                         mask="(99) 9999-9999?"
                         formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
                         maskChar={null}
+                        onBlur={e => {
+                          field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
+                        }}
                       />
                     )}
                   />
@@ -400,6 +422,13 @@ class StepGrantor extends Component {
                         mask="(99) 9999-9999?"
                         formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
                         maskChar={null}
+                        onBlur={e => {
+                          field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
+                        }}
                       />
                     )}
                   />
@@ -448,6 +477,13 @@ class StepGrantor extends Component {
                         mask="(99) 9999-9999?"
                         formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
                         maskChar={null}
+                        onBlur={e => {
+                          field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
+                        }}
                       />
                     )}
                   />
@@ -465,6 +501,13 @@ class StepGrantor extends Component {
                         mask="(99) 9999-9999?"
                         formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
                         maskChar={null}
+                        onBlur={e => {
+                          field.onBlur(e);
+                          setFieldValue(
+                            field.name,
+                            field.value.match(/\d+/g).join('')
+                          );
+                        }}
                       />
                     )}
                   />
