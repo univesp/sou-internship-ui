@@ -56,7 +56,7 @@ const MyLink = styled(Link)`
 `;
 
 const Text = styled.p`
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-family: var(--title);
   font-weight: 500;
   text-align: center;

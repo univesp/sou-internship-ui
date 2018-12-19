@@ -144,6 +144,27 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
           </Data>
         </Col>
       </Row>
+      <Subtitle>Dados do Professor coordenador</Subtitle>
+      <Row>
+        <Col>
+          <Data>
+            <Item>
+              Nome <Datum>{values.professor.name}</Datum>
+            </Item>
+            <Item>
+              Telefone 1 <Datum>{values.professor.phone[0]}</Datum>
+            </Item>
+            <Item>
+              Telefone 2
+              <Datum>{values.professor.phone[1] || 'Não informado'}</Datum>
+            </Item>
+            <Item>
+              E-mail institucional
+              <Datum>{values.professor.email}</Datum>
+            </Item>
+          </Data>
+        </Col>
+      </Row>
       <Subtitle>Dados do Diretor/Coordenador responsável</Subtitle>
       <Row>
         <Col>
@@ -161,48 +182,6 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
             <Item>
               E-mail institucional
               <Datum>{values.responsible.email}</Datum>
-            </Item>
-          </Data>
-        </Col>
-      </Row>
-      <Subtitle>Dados do Professor regente</Subtitle>
-      <Row>
-        <Col>
-          <Data>
-            <Item>
-              Nome <Datum>{values.regent.name}</Datum>
-            </Item>
-            <Item>
-              Telefone 1 <Datum>{values.regent.phone[0]}</Datum>
-            </Item>
-            <Item>
-              Telefone 2
-              <Datum>{values.regent.phone[1] || 'Não informado'}</Datum>
-            </Item>
-            <Item>
-              E-mail institucional
-              <Datum>{values.regent.email}</Datum>
-            </Item>
-          </Data>
-        </Col>
-      </Row>
-      <Subtitle>Dados do Orientador de Estágio</Subtitle>
-      <Row>
-        <Col>
-          <Data>
-            <Item>
-              Nome <Datum>{values.advisor.name}</Datum>
-            </Item>
-            <Item>
-              Telefone 1 <Datum>{values.advisor.phone[0]}</Datum>
-            </Item>
-            <Item>
-              Telefone 2
-              <Datum>{values.advisor.phone[1] || 'Não informado'}</Datum>
-            </Item>
-            <Item>
-              E-mail institucional
-              <Datum>{values.advisor.email}</Datum>
             </Item>
           </Data>
         </Col>

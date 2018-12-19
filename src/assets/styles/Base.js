@@ -9,7 +9,7 @@ const Base = createGlobalStyle`
   }
 
   html {
-    font-size: 16px;
+    font-size: 14px;
     font-family: var(--text);
     letter-spacing: 0.1vw;
   }
@@ -22,8 +22,8 @@ const Base = createGlobalStyle`
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 80px 1fr 1fr;
-    grid-template-rows: 80px 130px auto;
+    grid-template-columns: 60px 1fr 1fr;
+    grid-template-rows: 60px 130px auto;
     grid-template-areas:
     "header header header"
     "sidebar jumbotron jumbotron"
