@@ -32,6 +32,7 @@ const SplitRight = styled.div`
 const Title = styled.h2`
   text-align: center;
   font-size: 1.6rem;
+  margin-bottom: 2rem;
   text-transform: uppercase;
 `;
 

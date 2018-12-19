@@ -81,28 +81,11 @@ class StepGrantor extends Component {
           .email('Preencha com um e-mail valido')
           .required('O campo e-mail é obrigatório')
       }),
-      regent: Yup.object().shape({
+      professor: Yup.object().shape({
         name: Yup.string()
           .min(4, 'Nome muito pequeno')
           .max(50, 'Nome muito grande')
           .required('O campo Nome é obrigatório'),
-        phone: Yup.array()
-          .of(Yup.string())
-          .compact()
-          .min(1, 'Preencha ao menos um campo de telefone'),
-        email: Yup.string()
-          .email('Preencha com um e-mail valido')
-          .required('O campo e-mail é obrigatório')
-      }),
-      advisor: Yup.object().shape({
-        name: Yup.string()
-          .min(4, 'Nome muito pequeno')
-          .max(50, 'Nome muito grande')
-          .required('O campo Nome é obrigatório'),
-        department: Yup.string()
-          .min(4, 'Nome de departamento muito pequeno')
-          .max(50, 'Nome de departamento muito grande')
-          .required('O campo departamento é obrigatório'),
         phone: Yup.array()
           .of(Yup.string())
           .compact()
@@ -115,7 +98,6 @@ class StepGrantor extends Component {
 
   render() {
     const {
-      options,
       handleSubmit,
       grantorOptions,
       buttons,
@@ -123,8 +105,7 @@ class StepGrantor extends Component {
         grantorSelected,
         instituition,
         responsible,
-        regent,
-        advisor
+        professor
       },
       saveChanges
     } = this.props;
@@ -136,9 +117,8 @@ class StepGrantor extends Component {
         initialValues={{
           grantorSelected,
           instituition,
-          responsible,
-          regent,
-          advisor
+          professor,
+          responsible
         }}
       >
         {({ setFieldValue, values, handleBlur }) => (
@@ -379,6 +359,70 @@ class StepGrantor extends Component {
             <Row>
               <Col>
                 <Label>
+                  Professor coordenador <span>*</span>
+                  <Field
+                    name="professor.name"
+                    onBlur={e => {
+                      handleBlur(e);
+                      saveChanges(values);
+                    }}
+                  />
+                  <ErrorMessage name="professor.name" component="span" />
+                </Label>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Label>
+                  Telefone 1 <span>*</span>
+                  <Field
+                    name="professor.phone[0]"
+                    render={({ field }) => (
+                      <InputMask
+                        {...field}
+                        mask="(99) 9999-9999?"
+                        formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
+                        maskChar={null}
+                      />
+                    )}
+                  />
+                  <ErrorMessage name="professor.phone" component="span" />
+                </Label>
+              </Col>
+              <Col>
+                <Label>
+                  Telefone 2
+                  <Field
+                    name="professor.phone[1]"
+                    render={({ field }) => (
+                      <InputMask
+                        {...field}
+                        mask="(99) 9999-9999?"
+                        formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
+                        maskChar={null}
+                      />
+                    )}
+                  />
+                </Label>
+              </Col>
+              <Col>
+                <Label>
+                  E-mail institucional <span>*</span>
+                  <Field
+                    name="professor.email"
+                    onBlur={e => {
+                      handleBlur(e);
+                      saveChanges(values);
+                    }}
+                  />
+                  <ErrorMessage name="professor.email" component="span" />
+                </Label>
+              </Col>
+            </Row>
+            <HorizontalDivider />
+            <Row>
+              <Col>
+                <Label>
                   Diretor ou Coordenador responsável pela supervisão do estágio
                   <span>*</span>
                   <Field
@@ -437,149 +481,6 @@ class StepGrantor extends Component {
                     }}
                   />
                   <ErrorMessage name="responsible.email" component="span" />
-                </Label>
-              </Col>
-            </Row>
-            <HorizontalDivider />
-            <Row>
-              <Col>
-                <Label>
-                  Professor regente ou afim <span>*</span>
-                  <Field
-                    name="regent.name"
-                    onBlur={e => {
-                      handleBlur(e);
-                      saveChanges(values);
-                    }}
-                  />
-                  <ErrorMessage name="regent.name" component="span" />
-                </Label>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Label>
-                  Telefone 1 <span>*</span>
-                  <Field
-                    name="regent.phone[0]"
-                    render={({ field }) => (
-                      <InputMask
-                        {...field}
-                        mask="(99) 9999-9999?"
-                        formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
-                        maskChar={null}
-                      />
-                    )}
-                  />
-                  <ErrorMessage name="regent.phone" component="span" />
-                </Label>
-              </Col>
-              <Col>
-                <Label>
-                  Telefone 2
-                  <Field
-                    name="regent.phone[1]"
-                    render={({ field }) => (
-                      <InputMask
-                        {...field}
-                        mask="(99) 9999-9999?"
-                        formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
-                        maskChar={null}
-                      />
-                    )}
-                  />
-                </Label>
-              </Col>
-              <Col>
-                <Label>
-                  E-mail institucional <span>*</span>
-                  <Field
-                    name="regent.email"
-                    onBlur={e => {
-                      handleBlur(e);
-                      saveChanges(values);
-                    }}
-                  />
-                  <ErrorMessage name="regent.email" component="span" />
-                </Label>
-              </Col>
-            </Row>
-            <HorizontalDivider />
-            <Row>
-              <Col>
-                <Label>
-                  Orientador(a) de Estágio <span>*</span>
-                  <Field
-                    name="advisor.name"
-                    onBlur={e => {
-                      handleBlur(e);
-                      saveChanges(values);
-                    }}
-                  />
-                  <ErrorMessage name="advisor.name" component="span" />
-                </Label>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Label>
-                  Departamento <span>*</span>
-                  <Field
-                    name="advisor.department"
-                    onBlur={e => {
-                      handleBlur(e);
-                      saveChanges(values);
-                    }}
-                  />
-                  <ErrorMessage name="advisor.department" component="span" />
-                </Label>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <Label>
-                  Telefone 1 <span>*</span>
-                  <Field
-                    name="advisor.phone[0]"
-                    render={({ field }) => (
-                      <InputMask
-                        {...field}
-                        mask="(99) 9999-9999?"
-                        formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
-                        maskChar={null}
-                      />
-                    )}
-                  />
-                  <ErrorMessage name="advisor.phone" component="span" />
-                </Label>
-              </Col>
-              <Col>
-                <Label>
-                  Telefone 2
-                  <Field
-                    name="advisor.phone[1]"
-                    render={({ field }) => (
-                      <InputMask
-                        {...field}
-                        mask="(99) 9999-9999?"
-                        formatChars={{ '9': '[0-9]', '?': '[0-9 ]' }}
-                        maskChar={null}
-                      />
-                    )}
-                  />
-                </Label>
-              </Col>
-              <Col>
-                <Label>
-                  E-mail institucional <span>*</span>
-                  <Field
-                    name="advisor.email"
-                    onBlur={e => {
-                      handleBlur(e);
-                      saveChanges(values);
-                    }}
-                  />
-                  <ErrorMessage name="advisor.email" component="span" />
                 </Label>
               </Col>
             </Row>

@@ -6,7 +6,7 @@ const Header = styled.header`
   background-color: var(--gray-darken);
   justify-content: space-between;
   align-items: center;
-  padding: 30px 1.5vw;
+  padding: 0px 1.5vw;
   grid-area: header;
 `;
 
