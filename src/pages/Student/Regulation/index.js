@@ -10,8 +10,8 @@ import {
   OrderedList,
   UnorderedList,
   Item,
-  Pdf,
-  TextPdf,
+  // Pdf,
+  // TextPdf,
   Agreement
 } from './styles';
 
