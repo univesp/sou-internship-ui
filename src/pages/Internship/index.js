@@ -17,13 +17,29 @@ import {
   Action
 } from './styles';
 
+import api from '../../services/api';
+
 const status = ['Em análise', 'Deferido', 'Indeferido', 'Pendente'];
+const type = ['Aproveitamento de horas', 'Incluir processo de estágio'];
 class Internship extends Component {
   state = {
     process: null
   };
+
+  async componentDidMount() {
+    const resProcess = await api.get('/student/1/processes');
+    const resGrantor = await api.get('/grantor/1');
+
+    console.log(resProcess.data.processes);
+
+    this.setState({
+      process: resProcess.data.processes,
+      grantor: resGrantor.data.grantor[0]
+    });
+  }
+
   renderTable = () => {
-    const { process } = this.state;
+    const { process, grantor } = this.state;
     return (
       <Table>
         <Head>
@@ -37,19 +53,24 @@ class Internship extends Component {
         </Head>
         <Body>
           {process.map(item => (
-            <Row>
+            <Row key={item.id}>
               <Td align="left">
                 <Type>
-                  {item.name}
-                  <Grantor>{item.grantor.name}</Grantor>
+                  {type[item.type]}
+                  <Grantor>{grantor.name}</Grantor>
                 </Type>
               </Td>
-              <Td align="left">{item.created_at}</Td>
               <Td align="left">
-                <Status finalized={false}>{status[item.status]}</Status>
+                {item.created_at.replace(
+                  /^(\d{4})-(\d{2})-(\d{2}).*/,
+                  '$3/$2/$1'
+                )}
               </Td>
               <Td align="left">
-                <Status finalized={false}>{item.responsible}</Status>
+                <Status finalized={item.status}>{status[item.status]}</Status>
+              </Td>
+              <Td align="left">
+                <Status finalized={item.status}>{item.moderator_name}</Status>
               </Td>
               <Td>
                 <Link to={`resume/${item.id}`}>Visualizar resumo</Link>

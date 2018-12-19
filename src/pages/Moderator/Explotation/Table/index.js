@@ -32,8 +32,8 @@ class TableComponent extends Component {
         avatar: '',
         name: 'Marco Antônio Barão Neves',
         course: 'Ciência da computação',
-        semStart: '2019.1',
-        semEnd: '2023.2',
+        startSem: '2019.1',
+        endSem: '2023.2',
         status: 0
       }
     ]
@@ -104,8 +104,8 @@ class TableComponent extends Component {
                 .filter(item => item.status === tab)
                 .filter(
                   item =>
-                    RegExp(search).test(item.name, 'i') ||
-                    RegExp(search).test(item.course, 'i')
+                    RegExp(search, 'i').test(item.name) ||
+                    RegExp(search, 'i').test(item.course)
                 )
                 .map(item => (
                   <Row key={item.id}>
