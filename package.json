@@ -12,6 +12,7 @@
     "react-dom": "^16.6.3",
     "react-dropzone": "^8.0.0",
     "react-input-mask": "^2.0.4",
+    "react-loading-screen": "^0.0.17",
     "react-modal": "^3.7.1",
     "react-pdf": "^4.0.0",
     "react-router-dom": "^4.3.1",

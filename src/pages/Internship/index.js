@@ -27,10 +27,15 @@ class Internship extends Component {
   };
 
   async componentDidMount() {
-    const resProcess = await api.get('/student/1/processes');
-    const resGrantor = await api.get('/grantor/1');
+    const { toggleLoading } = this.props();
 
-    console.log(resProcess.data.processes);
+    toggleLoading();
+
+    const resProcess = await api.get('/student/1/processes').then(res => {
+      toggleLoading();
+      return res;
+    });
+    const resGrantor = await api.get('/grantor/1');
 
     this.setState({
       process: resProcess.data.processes,
