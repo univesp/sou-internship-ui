@@ -4,6 +4,7 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Modal from 'react-modal';
 import Alert from 'react-s-alert';
+import LoadingScreen from 'react-loading-screen';
 
 import {
   Container,
@@ -85,7 +86,13 @@ class Summary extends Component {
         explotation: {},
         activities: {}
       }
-    }
+    },
+    loading: false
+  };
+
+  toggleLoading = () => {
+    const { loading } = this.state;
+    this.setState({ loading: !loading });
   };
 
   openModal = e => {
@@ -156,9 +163,14 @@ class Summary extends Component {
   };
 
   render() {
-    const { process, overrule, modal } = this.state;
+    const { process, overrule, modal, loading } = this.state;
     return (
       <Container>
+        <LoadingScreen
+          loading={loading}
+          bgColor="#FFF"
+          spinnerColor="#ED3B48"
+        />
         <Title>Nome da Disciplina de Estágio</Title>
         <Subtitle>Semestre e ano de oferta</Subtitle>
         <StepSummary values={process} />

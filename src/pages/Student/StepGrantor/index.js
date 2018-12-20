@@ -177,7 +177,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                           saveChanges(values);
                         }}
@@ -217,7 +219,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                           saveChanges(values);
                         }}
@@ -242,7 +246,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                           saveChanges(values);
                         }}
@@ -266,7 +272,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                           saveChanges(values);
                         }}
@@ -292,7 +300,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                           saveChanges(values);
                         }}
@@ -402,7 +412,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                         }}
                       />
@@ -426,7 +438,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                         }}
                       />
@@ -481,7 +495,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                         }}
                       />
@@ -505,7 +521,9 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value.match(/\d+/g).join('')
+                            field.value
+                              ? field.value.match(/\d+/g).join('')
+                              : ''
                           );
                         }}
                       />

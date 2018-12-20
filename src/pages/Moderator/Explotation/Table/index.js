@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import LoadingScreen from 'react-loading-screen';
 
 import {
   Container,
@@ -36,12 +37,24 @@ class TableComponent extends Component {
         endSem: '2023.2',
         status: 0
       }
-    ]
+    ],
+    loading: false
   };
+
+  toggleLoading = () => {
+    const { loading } = this.state;
+    this.setState({ loading: !loading });
+  };
+
   render() {
-    const { process, tab, search } = this.state;
+    const { process, tab, search, loading } = this.state;
     return (
       <Container>
+        <LoadingScreen
+          loading={loading}
+          bgColor="#FFF"
+          spinnerColor="#ED3B48"
+        />
         <Title>Pedidos de Aproveitamento de Horas</Title>
         <Section>
           <Nav>

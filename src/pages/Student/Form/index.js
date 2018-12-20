@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Alert from 'react-s-alert';
+import LoadingScreen from 'react-loading-screen';
 
 import Stepper from '../../../components/Stepper';
 import StepPersonal from '../StepPersonal';
@@ -36,6 +37,7 @@ const stepper = [
 
 class StudentForm extends Component {
   state = {
+    loading: false,
     step: 0,
     values: {
       grantorSelected: {},
@@ -108,14 +110,16 @@ class StudentForm extends Component {
   };
 
   async componentDidMount() {
+    this.toggleLoading();
     const { step, values } =
       JSON.parse(localStorage.getItem('state')) || this.state;
 
     const resPersonal = await api.get('/student/1');
     const resProfessor = await api.get('/professor/1');
-    const resGrantor = await api.get('grantor');
-
-    console.log(resPersonal.data);
+    const resGrantor = await api.get('grantor').then(res => {
+      this.toggleLoading();
+      return res;
+    });
 
     this.setState({
       step: Math.min(step, 2),
@@ -134,6 +138,11 @@ class StudentForm extends Component {
       }
     });
   }
+
+  toggleLoading = () => {
+    const { loading } = this.state;
+    this.setState({ loading: !loading });
+  };
 
   previousStep = e => {
     e.preventDefault();
@@ -193,7 +202,7 @@ class StudentForm extends Component {
   }
 
   render() {
-    const { step, grantorOptions, values } = this.state;
+    const { step, grantorOptions, values, loading } = this.state;
     const steps = [
       <StepPersonal
         handleSubmit={this.submit}
@@ -221,6 +230,11 @@ class StudentForm extends Component {
     ];
     return (
       <Container>
+        <LoadingScreen
+          loading={loading}
+          bgColor="#FFF"
+          spinnerColor="#ED3B48"
+        />
         <Stepper step={step} steps={stepper} clickStep={this.clickStep} />
         <Title>Nome da Disciplina de Estágio</Title>
         <Subtitle>Semestre e ano de oferta</Subtitle>

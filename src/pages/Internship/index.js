@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import LoadingScreen from 'react-loading-screen';
 
 import {
   Container,
@@ -23,19 +24,23 @@ const status = ['Em análise', 'Deferido', 'Indeferido', 'Pendente'];
 const type = ['Aproveitamento de horas', 'Incluir processo de estágio'];
 class Internship extends Component {
   state = {
-    process: null
+    process: null,
+    grantor: null,
+    loading: false
+  };
+
+  toggleLoading = () => {
+    const { loading } = this.state;
+    this.setState({ loading: !loading });
   };
 
   async componentDidMount() {
-    const { toggleLoading } = this.props();
-
-    toggleLoading();
-
-    const resProcess = await api.get('/student/1/processes').then(res => {
-      toggleLoading();
+    this.toggleLoading();
+    const resProcess = await api.get('/student/1/processes');
+    const resGrantor = await api.get('/grantor/1').then(res => {
+      this.toggleLoading();
       return res;
     });
-    const resGrantor = await api.get('/grantor/1');
 
     this.setState({
       process: resProcess.data.processes,
@@ -44,6 +49,9 @@ class Internship extends Component {
   }
 
   renderTable = () => {
+    const {
+      match: { url }
+    } = this.props;
     const { process, grantor } = this.state;
     return (
       <Table>
@@ -78,7 +86,9 @@ class Internship extends Component {
                 <Status finalized={item.status}>{item.moderator_name}</Status>
               </Td>
               <Td>
-                <Link to={`resume/${item.id}`}>Visualizar resumo</Link>
+                <Link to={`${url}/student/resume/${item.id}`}>
+                  Visualizar resumo
+                </Link>
               </Td>
             </Row>
           ))}
@@ -90,22 +100,25 @@ class Internship extends Component {
     const {
       match: { url }
     } = this.props;
-    const { process } = this.state;
+    const { process, loading } = this.state;
     return (
-      <Fragment>
-        <Container>
-          {process ? this.renderTable() : null}
-          <Text>Selecione o processo que quer iniciar:</Text>
-          <Actions>
-            <Action to={`${url}/student/regulation`}>
-              Aproveitamento de horas de estágio
-            </Action>
-            <Action to={`${url}`} disabled>
-              Incluir novo processo de estágio
-            </Action>
-          </Actions>
-        </Container>
-      </Fragment>
+      <Container>
+        <LoadingScreen
+          loading={loading}
+          bgColor="#FFF"
+          spinnerColor="#ED3B48"
+        />
+        {process ? this.renderTable() : null}
+        <Text>Selecione o processo que quer iniciar:</Text>
+        <Actions>
+          <Action to={`${url}/student/regulation`}>
+            Aproveitamento de horas de estágio
+          </Action>
+          <Action to={`${url}`} disabled>
+            Incluir novo processo de estágio
+          </Action>
+        </Actions>
+      </Container>
     );
   }
 }
