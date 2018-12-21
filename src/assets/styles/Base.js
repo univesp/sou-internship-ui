@@ -11,7 +11,7 @@ const Base = createGlobalStyle`
   html {
     font-size: 14px;
     font-family: var(--text);
-    letter-spacing: 0.1vw;
+    letter-spacing: 0.0325vw;
   }
 
   h1, h2, h3, h4, h5, h6 {
