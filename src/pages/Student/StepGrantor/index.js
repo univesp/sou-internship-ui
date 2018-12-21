@@ -46,8 +46,8 @@ class StepGrantor extends Component {
       grantor: Yup.object().shape({
         cnpj: Yup.string().required('O campo CNPJ é obrigatório'),
         name: Yup.string()
-          .min(4, 'Nome muito pequeno')
-          .max(50, 'Nome muito grande')
+          .min(6, 'Nome muito pequeno')
+          .max(80, 'Nome muito grande')
           .required('O campo Nome é obrigatório'),
         phone: Yup.array()
           .of(Yup.string())
@@ -55,13 +55,13 @@ class StepGrantor extends Component {
           .min(1, 'Preencha ao menos um campo de telefone'),
         zip: Yup.string().required('O campo de CEP é obrigatório'),
         street: Yup.string()
-          .min(4, 'Nome de logradouro muito pequeno')
-          .max(25, 'Nome de logradouro muito grande')
-          .required('O campo de CEP é obrigatório'),
+          .min(8, 'Nome de logradouro muito pequeno')
+          .max(60, 'Nome de logradouro muito grande')
+          .required('O campo de logradouro é obrigatório'),
         number: Yup.string().required('O campo de número é obrigatório'),
         city: Yup.string()
           .min(4, 'Nome de cidade muito pequeno')
-          .max(30, 'Nome de cidade muito grande')
+          .max(40, 'Nome de cidade muito grande')
           .required('O campo de cidade é obrigatório'),
         federatedState: Yup.string()
           .min(2, 'Digite a sigla do Estado')
@@ -70,8 +70,8 @@ class StepGrantor extends Component {
       }),
       responsible: Yup.object().shape({
         name: Yup.string()
-          .min(4, 'Nome muito pequeno')
-          .max(50, 'Nome muito grande')
+          .min(4, 'Nome do responsável muito pequeno')
+          .max(50, 'Nome do responsável muito grande')
           .required('O campo Nome é obrigatório'),
         phone: Yup.array()
           .of(Yup.string())
@@ -79,6 +79,7 @@ class StepGrantor extends Component {
           .min(1, 'Preencha ao menos um campo de telefone'),
         email: Yup.string()
           .email('Preencha com um e-mail valido')
+          .max(70, 'O E-mail é muito grande')
           .required('O campo e-mail é obrigatório')
       }),
       professor: Yup.object().shape({
@@ -92,6 +93,7 @@ class StepGrantor extends Component {
           .min(1, 'Preencha ao menos um campo de telefone'),
         email: Yup.string()
           .email('Preencha com um e-mail valido')
+          .max(70, 'O E-mail é muito grande')
           .required('O campo e-mail é obrigatório')
       })
     });

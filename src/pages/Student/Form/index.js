@@ -111,6 +111,7 @@ class StudentForm extends Component {
 
   async componentDidMount() {
     this.toggleLoading();
+
     const { step, values } =
       JSON.parse(localStorage.getItem('state')) || this.state;
 
