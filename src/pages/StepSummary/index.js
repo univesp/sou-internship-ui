@@ -33,10 +33,19 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
               <Datum>{values.personal.assumedName || 'Não possui'}</Datum>
             </Item>
             <Item>
-              Data de nascimento <Datum>{values.personal.birthDate}</Datum>
+              Data de nascimento{' '}
+              <Datum>
+                {values.personal.birthDate.replace(
+                  /^(\d{4})-(\d{2})-(\d{2}).*/,
+                  '$3/$2/$1'
+                )}
+              </Datum>
             </Item>
             <Item>
-              Sexo <Datum>{values.personal.gender}</Datum>
+              Sexo{' '}
+              <Datum>
+                {values.personal.gender === 'F' ? 'Feminino' : 'Masculino'}
+              </Datum>
             </Item>
             <Item>
               Naturalidade <Datum>{values.personal.countryBirth}</Datum>
@@ -45,7 +54,13 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
               Nacionalidade <Datum>{values.personal.nationality}</Datum>
             </Item>
             <Item>
-              CPF <Datum>{values.personal.documents.cpf}</Datum>
+              CPF{' '}
+              <Datum>
+                {values.personal.documents.cpf.replace(
+                  /^(\d{3})(\d{3})(\d{3})(\d{2}).*/,
+                  '$1.$2.$3-$4'
+                )}
+              </Datum>
             </Item>
             <Item>
               Raça <Datum>{race[values.personal.race]}</Datum>
@@ -72,7 +87,13 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
               Número <Datum>{values.personal.address.number}</Datum>
             </Item>
             <Item>
-              CEP <Datum>{values.personal.address.zip}</Datum>
+              CEP{' '}
+              <Datum>
+                {values.personal.address.zip.replace(
+                  /^(\d{5})(\d{3}).*/,
+                  '$1-$2'
+                )}
+              </Datum>
             </Item>
             <Item>
               Bairro <Datum>{values.personal.address.district}</Datum>
@@ -90,7 +111,13 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
               </Datum>
             </Item>
             <Item>
-              Celular <Datum>{values.personal.cellphone}</Datum>
+              Celular{' '}
+              <Datum>
+                {values.personal.cellphone.replace(
+                  /^(\d{2})(\d{5})(\d{4}).*/,
+                  '($1) $2-$3'
+                )}
+              </Datum>
             </Item>
             <Item>
               E-mail pessoal <Datum>{values.personal.personalEmail}</Datum>
@@ -107,39 +134,67 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
         <Col>
           <Data>
             <Item>
-              CNPJ <Datum>{values.instituition.cnpj}</Datum>
+              CNPJ{' '}
+              <Datum>
+                {values.grantor.cnpj.replace(
+                  /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2}).*/,
+                  '$1.$2.$3/$4-$5'
+                )}
+              </Datum>
             </Item>
             <Item>
-              Nome <Datum>{values.instituition.name}</Datum>
+              Nome <Datum>{values.grantor.name}</Datum>
             </Item>
             <Item>
-              Telefone 1 <Datum>{values.instituition.phone[0]}</Datum>
+              Telefone 1{' '}
+              <Datum>
+                {values.grantor.phone[0].replace(
+                  /^(\d{2})(\d{4,5})(\d{4}).*/,
+                  '($1) $2-$3'
+                )}
+              </Datum>
             </Item>
             <Item>
               Telefone 2
-              <Datum>{values.instituition.phone[1] || 'Não informado'}</Datum>
+              <Datum>
+                {values.grantor.phone[1] && values.grantor.phone[1]
+                  ? values.grantor.phone[1].replace(
+                      /^(\d{2})(\d{4,5})(\d{4}).*/,
+                      '($1) $2-$3'
+                    )
+                  : 'Não informado'}
+              </Datum>
             </Item>
             <Item>
-              Fax <Datum>{values.instituition.fax || 'Não informado'}</Datum>
+              Fax{' '}
+              <Datum>
+                {values.grantor.fax.replace(
+                  /^(\d{2})(\d{4,5})(\d{4}).*/,
+                  '($1) $2-$3'
+                ) || 'Não informado'}
+              </Datum>
             </Item>
             <Item>
-              Logradouro <Datum>{values.instituition.street}</Datum>
+              Logradouro <Datum>{values.grantor.street}</Datum>
             </Item>
             <Item>
-              Número <Datum>{values.instituition.number}</Datum>
+              Número <Datum>{values.grantor.number}</Datum>
             </Item>
             <Item>
-              CEP <Datum>{values.instituition.cep}</Datum>
+              CEP{' '}
+              <Datum>
+                {values.grantor.zip.replace(/^(\d{5})(\d{3}).*/, '$1-$2')}
+              </Datum>
             </Item>
             <Item>
-              Cidade <Datum>{values.instituition.city}</Datum>
+              Cidade <Datum>{values.grantor.city}</Datum>
             </Item>
             <Item>
-              Estado <Datum>{values.instituition.federatedState}</Datum>
+              Estado <Datum>{values.grantor.federatedState}</Datum>
             </Item>
             <Item>
               Complemento
-              <Datum>{values.instituition.complement || 'Não possui'}</Datum>
+              <Datum>{values.grantor.complement || 'Não possui'}</Datum>
             </Item>
           </Data>
         </Col>
@@ -152,11 +207,24 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
               Nome <Datum>{values.professor.name}</Datum>
             </Item>
             <Item>
-              Telefone 1 <Datum>{values.professor.phone[0]}</Datum>
+              Telefone 1{' '}
+              <Datum>
+                {values.professor.phone[0].replace(
+                  /^(\d{2})(\d{4,5})(\d{4}).*/,
+                  '($1) $2-$3'
+                )}
+              </Datum>
             </Item>
             <Item>
               Telefone 2
-              <Datum>{values.professor.phone[1] || 'Não informado'}</Datum>
+              <Datum>
+                {values.professor.phone[1] && values.professor.phone[1]
+                  ? values.professor.phone[1].replace(
+                      /^(\d{2})(\d{4,5})(\d{4}).*/,
+                      '($1) $2-$3'
+                    )
+                  : 'Não informado'}
+              </Datum>
             </Item>
             <Item>
               E-mail institucional
@@ -173,11 +241,24 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
               Nome <Datum>{values.responsible.name}</Datum>
             </Item>
             <Item>
-              Telefone 1 <Datum>{values.responsible.phone[0]}</Datum>
+              Telefone 1{' '}
+              <Datum>
+                {values.responsible.phone[0].replace(
+                  /^(\d{2})(\d{4,5})(\d{4}).*/,
+                  '($1) $2-$3'
+                )}
+              </Datum>
             </Item>
             <Item>
               Telefone 2
-              <Datum>{values.responsible.phone[1] || 'Não informado'}</Datum>
+              <Datum>
+                {values.responsible.phone[1] && values.responsible.phone[1]
+                  ? values.responsible.phone[1].replace(
+                      /^(\d{2})(\d{4,5})(\d{4}).*/,
+                      '($1) $2-$3'
+                    )
+                  : 'Não informado'}
+              </Datum>
             </Item>
             <Item>
               E-mail institucional
@@ -189,9 +270,8 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
       <Subtitle>Documentos</Subtitle>
       <Row width="100%">
         {Object.keys(values.files).map(file => (
-          <Col>
+          <Col key={file}>
             <Document
-              key={file}
               name={dict[file]}
               document={file}
               file={values.files[file]}

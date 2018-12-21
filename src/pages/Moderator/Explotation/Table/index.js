@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import LoadingScreen from 'react-loading-screen';
 
 import {
   Container,
@@ -32,16 +33,28 @@ class TableComponent extends Component {
         avatar: '',
         name: 'Marco Antônio Barão Neves',
         course: 'Ciência da computação',
-        semStart: '2019.1',
-        semEnd: '2023.2',
+        startSem: '2019.1',
+        endSem: '2023.2',
         status: 0
       }
-    ]
+    ],
+    loading: false
   };
+
+  toggleLoading = () => {
+    const { loading } = this.state;
+    this.setState({ loading: !loading });
+  };
+
   render() {
-    const { process, tab, search } = this.state;
+    const { process, tab, search, loading } = this.state;
     return (
       <Container>
+        <LoadingScreen
+          loading={loading}
+          bgColor="#FFF"
+          spinnerColor="#ED3B48"
+        />
         <Title>Pedidos de Aproveitamento de Horas</Title>
         <Section>
           <Nav>
@@ -104,11 +117,11 @@ class TableComponent extends Component {
                 .filter(item => item.status === tab)
                 .filter(
                   item =>
-                    RegExp(search).test(item.name) ||
-                    RegExp(search).test(item.course)
+                    RegExp(search, 'i').test(item.name) ||
+                    RegExp(search, 'i').test(item.course)
                 )
                 .map(item => (
-                  <Row>
+                  <Row key={item.id}>
                     <Td>
                       <Avatar avatar={item.avatar} />
                     </Td>

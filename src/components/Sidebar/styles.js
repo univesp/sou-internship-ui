@@ -30,11 +30,12 @@ const Action = styled.li`
   background-color: ${props =>
     props.active ? 'var(--red-darken)' : 'transparent'};
   background-image: url(${props => props.icon});
+  background-size: 32px;
   background-repeat: no-repeat;
   background-origin: content-box;
   margin-top: 8px;
   border: 1px solid var(--zero);
-  padding-top: 3px;
+  padding: 8px;
   box-sizing: border-box;
 `;
 

@@ -11,7 +11,7 @@ const Base = createGlobalStyle`
   html {
     font-size: 14px;
     font-family: var(--text);
-    letter-spacing: 0.1vw;
+    letter-spacing: 0.0325vw;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -23,7 +23,7 @@ const Base = createGlobalStyle`
     height: 100%;
     display: grid;
     grid-template-columns: 60px 1fr 1fr;
-    grid-template-rows: 60px 130px auto;
+    grid-template-rows: 60px 120px auto;
     grid-template-areas:
     "header header header"
     "sidebar jumbotron jumbotron"
