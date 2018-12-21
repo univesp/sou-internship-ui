@@ -4,6 +4,7 @@ import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Modal from 'react-modal';
 import Alert from 'react-s-alert';
+import LoadingScreen from 'react-loading-screen';
 
 import {
   Container,
@@ -18,7 +19,7 @@ import {
   Textarea
 } from './styles';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
 class Summary extends Component {
   state = {
@@ -58,12 +59,12 @@ class Summary extends Component {
           state: 'SP'
         }
       },
-      instituition: {
+      grantor: {
         cnpj: '12.321.312/3213-21',
         name: 'daswqdsaqdw',
         phone: ['(12) 3213-21321'],
         fax: '',
-        cep: '08110-100',
+        zip: '08110100',
         street: 'Rua Jangaba',
         complement: '',
         number: '132',
@@ -85,16 +86,22 @@ class Summary extends Component {
         explotation: {},
         activities: {}
       }
-    }
+    },
+    loading: false
+  };
+
+  toggleLoading = () => {
+    const { loading } = this.state;
+    this.setState({ loading: !loading });
   };
 
   openModal = e => {
     this.setState({ modal: true });
-  }
+  };
 
   closeModal = e => {
     this.setState({ modal: false, overrule: false });
-  }
+  };
 
   overrule = e => {
     e.preventDefault();
@@ -128,15 +135,14 @@ class Summary extends Component {
 
   renderHours() {
     return (
-    <Area>
-      <Text>
-        Neste processo de aproveitamento de estágio são conferidos ao
-        aluno
-        <Field name="hours" type="number" min="0" /> horas comprovadas.
-      </Text>
-      <ErrorMessage name="hours" component="span" />
-    </Area>
-    )
+      <Area>
+        <Text>
+          Neste processo de aproveitamento de estágio são conferidos ao aluno
+          <Field name="hours" type="number" min="0" /> horas comprovadas.
+        </Text>
+        <ErrorMessage name="hours" component="span" />
+      </Area>
+    );
   }
 
   getValidationSchema = () => {
@@ -157,9 +163,14 @@ class Summary extends Component {
   };
 
   render() {
-    const { process, overrule, modal } = this.state;
+    const { process, overrule, modal, loading } = this.state;
     return (
       <Container>
+        <LoadingScreen
+          loading={loading}
+          bgColor="#FFF"
+          spinnerColor="#ED3B48"
+        />
         <Title>Nome da Disciplina de Estágio</Title>
         <Subtitle>Semestre e ano de oferta</Subtitle>
         <StepSummary values={process} />
@@ -178,7 +189,7 @@ class Summary extends Component {
           style={{
             content: {
               width: 900,
-              height: overrule ? 460 : 350,
+              height: overrule ? 485 : 350,
               top: '50%',
               left: '50%',
               right: 'auto',
@@ -189,26 +200,31 @@ class Summary extends Component {
           }}
         >
           <Formik
-          onSubmit={this.submit}
-          initialValues={{
-            hours: 0,
-            justification: ''
-          }}
-          validationSchema={this.getValidationSchema}
-        >
-          <Form>
-            <Subtitle ref={subtitle => this.subtitle = subtitle}>Preencha a {overrule ? 'justificativa para indeferimento' : 'quantidade de horas aproveitadas'}</Subtitle>
-            {overrule ? this.renderJustification() : this.renderHours()}
-            <GroupButton>
-              <Button secondary onClick={this.closeModal}>
-                Cancelar
-              </Button>
-              <Button primary type="submit">
-                Salvar
-              </Button>
-            </GroupButton>
-          </Form>
-        </Formik>
+            onSubmit={this.submit}
+            initialValues={{
+              hours: 0,
+              justification: ''
+            }}
+            validationSchema={this.getValidationSchema}
+          >
+            <Form>
+              <Subtitle ref={subtitle => (this.subtitle = subtitle)}>
+                Preencha a{' '}
+                {overrule
+                  ? 'justificativa para indeferimento'
+                  : 'quantidade de horas aproveitadas'}
+              </Subtitle>
+              {overrule ? this.renderJustification() : this.renderHours()}
+              <GroupButton>
+                <Button secondary onClick={this.closeModal}>
+                  Cancelar
+                </Button>
+                <Button primary type="submit">
+                  Salvar
+                </Button>
+              </GroupButton>
+            </Form>
+          </Formik>
         </Modal>
       </Container>
     );

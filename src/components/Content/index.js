@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
@@ -8,6 +8,7 @@ import Jumbotron from '../Jumbotron';
 import Internship from '../../pages/Internship';
 import Regulation from '../../pages/Student/Regulation';
 import StudentForm from '../../pages/Student/Form';
+import SummaryStudent from '../../pages/Student/Summary';
 import Summary from '../../pages/Moderator/Explotation/Summary';
 import Table from '../../pages/Moderator/Explotation/Table';
 
@@ -64,16 +65,26 @@ const Content = () => (
               <Fragment>
                 <Route exact path={`${url}`} component={Internship} />
                 <Route
+                  path={`${url}/student/resume/:id`}
+                  component={SummaryStudent}
+                />
+                <Route
                   path={`${url}/student/regulation`}
                   component={Regulation}
                 />
-                <Route path={`${url}/student/explotation`} component={StudentForm} />
+                <Route
+                  path={`${url}/student/explotation`}
+                  component={StudentForm}
+                />
                 <Route
                   exact
                   path={`${url}/moderator/explotation`}
                   component={Table}
                 />
-                <Route path={`${url}/moderator/explotation/:id`} component={Summary} />
+                <Route
+                  path={`${url}/moderator/explotation/:id`}
+                  component={Summary}
+                />
               </Fragment>
             )}
           />

@@ -9,6 +9,13 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  > div {
+    > div:first-child {
+      position: fixed;
+      width: calc(100vw);
+      height: calc(100vh);
+    }
+  }
 `;
 
 const Table = styled.table`

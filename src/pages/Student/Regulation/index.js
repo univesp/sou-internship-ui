@@ -10,12 +10,8 @@ import {
   OrderedList,
   UnorderedList,
   Item,
-  // Pdf,
-  // TextPdf,
   Agreement
 } from './styles';
-
-import PdfIcon from '../../../assets/imgs/pdf.svg';
 
 const Regulation = () => (
   <Container>
@@ -57,10 +53,6 @@ const Regulation = () => (
             <Item>Anexo III</Item>
           </UnorderedList>
         </OrderedList>
-        {/* <TextPdf href="algumpdfaidavida">
-          <Pdf src={PdfIcon} alt="Baixar como PDF" />
-          <span>Versão em PDF</span>
-        </TextPdf> */}
       </SplitLeft>
       <SplitRight>
         <Title>Regulamento de estágio das licenciaturas</Title>

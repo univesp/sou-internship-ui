@@ -4,6 +4,13 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 3rem;
+  > div {
+    > div:first-child {
+      position: fixed;
+      width: calc(100vw);
+      height: calc(100vh);
+    }
+  }
 `;
 
 const Title = styled.h2`
