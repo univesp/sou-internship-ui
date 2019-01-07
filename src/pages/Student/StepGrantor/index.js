@@ -11,8 +11,13 @@ import {
   Label,
   MyField as Field,
   MyMask as InputMask,
-  HorizontalDivider
+  HorizontalDivider,
+  Radio,
+  Check,
+  Link,
+  Error
 } from './styles';
+import Degrees from '../../../assets/pdf/regulamento_de_estagios_e_licenciaturas_08_11_18.pdf';
 
 import cep from '../../../services/viaCep';
 
@@ -43,6 +48,10 @@ class StepGrantor extends Component {
 
   getValidationSchema = () =>
     Yup.object().shape({
+      // agree: Yup.boolean().oneOf(
+      //   [true],
+      //   'Você deve concordar com o regulamento de estágio'
+      // ),
       grantor: Yup.object().shape({
         cnpj: Yup.string().required('O campo CNPJ é obrigatório'),
         name: Yup.string()
@@ -103,7 +112,13 @@ class StepGrantor extends Component {
       handleSubmit,
       grantorOptions,
       buttons,
-      initialValues: { grantorSelected, grantor, responsible, professor },
+      initialValues: {
+        grantorSelected,
+        grantor,
+        responsible,
+        professor,
+        // agree
+      },
       saveChanges
     } = this.props;
 
@@ -112,6 +127,7 @@ class StepGrantor extends Component {
         onSubmit={handleSubmit}
         validationSchema={this.getValidationSchema}
         initialValues={{
+          // agree,
           grantorSelected,
           grantor,
           professor,
@@ -188,7 +204,7 @@ class StepGrantor extends Component {
                       />
                     )}
                   />
-                  <ErrorMessage name="grantor.cnpj" component="span" />
+                  <ErrorMessage name="grantor.cnpj" component={Error} />
                 </Label>
               </Col>
               <Col>
@@ -201,7 +217,7 @@ class StepGrantor extends Component {
                       saveChanges(values);
                     }}
                   />
-                  <ErrorMessage name="grantor.name" component="span" />
+                  <ErrorMessage name="grantor.name" component={Error} />
                 </Label>
               </Col>
             </Row>
@@ -230,7 +246,7 @@ class StepGrantor extends Component {
                       />
                     )}
                   />
-                  <ErrorMessage name="grantor.phone" component="span" />
+                  <ErrorMessage name="grantor.phone" component={Error} />
                 </Label>
               </Col>
               <Col>
@@ -274,7 +290,7 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value
+                            field.value.length > 1
                               ? field.value.match(/\d+/g).join('')
                               : ''
                           );
@@ -302,7 +318,7 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value
+                            field.value.length > 1
                               ? field.value.match(/\d+/g).join('')
                               : ''
                           );
@@ -312,7 +328,7 @@ class StepGrantor extends Component {
                       />
                     )}
                   />
-                  <ErrorMessage name="grantor.zip" component="span" />
+                  <ErrorMessage name="grantor.zip" component={Error} />
                 </Label>
               </Col>
             </Row>
@@ -328,7 +344,7 @@ class StepGrantor extends Component {
                     }}
                     tabIndex="-1"
                   />
-                  <ErrorMessage name="grantor.street" component="span" />
+                  <ErrorMessage name="grantor.street" component={Error} />
                 </Label>
               </Col>
               <Col width="35%">
@@ -347,7 +363,7 @@ class StepGrantor extends Component {
                 <Label>
                   Número<span>*</span>
                   <Field name="grantor.number" />
-                  <ErrorMessage name="grantor.number" component="span" />
+                  <ErrorMessage name="grantor.number" component={Error} />
                 </Label>
               </Col>
               <Col width="30%">
@@ -361,7 +377,7 @@ class StepGrantor extends Component {
                     }}
                     tabIndex="-1"
                   />
-                  <ErrorMessage name="grantor.city" component="span" />
+                  <ErrorMessage name="grantor.city" component={Error} />
                 </Label>
               </Col>
               <Col width="8%">
@@ -377,7 +393,7 @@ class StepGrantor extends Component {
                   />
                   <ErrorMessage
                     name="grantor.federatedState"
-                    component="span"
+                    component={Error}
                   />
                 </Label>
               </Col>
@@ -394,7 +410,7 @@ class StepGrantor extends Component {
                       saveChanges(values);
                     }}
                   />
-                  <ErrorMessage name="professor.name" component="span" />
+                  <ErrorMessage name="professor.name" component={Error} />
                 </Label>
               </Col>
             </Row>
@@ -414,7 +430,7 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value
+                            field.value.length > 1
                               ? field.value.match(/\d+/g).join('')
                               : ''
                           );
@@ -422,7 +438,7 @@ class StepGrantor extends Component {
                       />
                     )}
                   />
-                  <ErrorMessage name="professor.phone" component="span" />
+                  <ErrorMessage name="professor.phone" component={Error} />
                 </Label>
               </Col>
               <Col>
@@ -440,7 +456,7 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value
+                            field.value.length > 1
                               ? field.value.match(/\d+/g).join('')
                               : ''
                           );
@@ -460,7 +476,7 @@ class StepGrantor extends Component {
                       saveChanges(values);
                     }}
                   />
-                  <ErrorMessage name="professor.email" component="span" />
+                  <ErrorMessage name="professor.email" component={Error} />
                 </Label>
               </Col>
             </Row>
@@ -477,7 +493,7 @@ class StepGrantor extends Component {
                       saveChanges(values);
                     }}
                   />
-                  <ErrorMessage name="responsible.name" component="span" />
+                  <ErrorMessage name="responsible.name" component={Error} />
                 </Label>
               </Col>
             </Row>
@@ -497,7 +513,7 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value
+                            field.value.length > 1
                               ? field.value.match(/\d+/g).join('')
                               : ''
                           );
@@ -505,7 +521,7 @@ class StepGrantor extends Component {
                       />
                     )}
                   />
-                  <ErrorMessage name="responsible.phone" component="span" />
+                  <ErrorMessage name="responsible.phone" component={Error} />
                 </Label>
               </Col>
               <Col>
@@ -523,7 +539,7 @@ class StepGrantor extends Component {
                           field.onBlur(e);
                           setFieldValue(
                             field.name,
-                            field.value
+                            field.value.length > 1
                               ? field.value.match(/\d+/g).join('')
                               : ''
                           );
@@ -543,10 +559,34 @@ class StepGrantor extends Component {
                       saveChanges(values);
                     }}
                   />
-                  <ErrorMessage name="responsible.email" component="span" />
+                  <ErrorMessage name="responsible.email" component={Error} />
                 </Label>
               </Col>
             </Row>
+            {/* <Row>
+              <Col>
+                <Field
+                  name="agree"
+                  render={({ field }) => (
+                    <Radio
+                      type="radio"
+                      {...field}
+                      id={field.name}
+                      onChange={() => setFieldValue(field.name, true)}
+                      checked={field.value}
+                    />
+                  )}
+                />
+                <Label htmlFor="agree">
+                  <Check checked={values.agree === true} />
+                  Eu li e aceito a{' '}
+                  <Link href={Degrees} target="_blank">
+                    regulamentação de aproveitamento de estágio
+                  </Link>
+                  <ErrorMessage name="agree" component={Error} />
+                </Label>
+              </Col>
+            </Row> */}
             {buttons}
           </Form>
         )}

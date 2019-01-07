@@ -26,49 +26,80 @@ const SUPPORTED_FORMATS = [
   'image/bmp',
   'application/pdf'
 ];
-const FILE_SIZE = 4194304;
+const FILE_SIZE = 1048576;
 
 class StepDocuments extends Component {
   getValidationSchema = () =>
     Yup.object().shape({
-      files: Yup.object().shape({
-        work: Yup.mixed()
-          .test(
-            'fileSize',
-            'Tamanho do arquivo não suportado, máximo 4mb',
-            value => value && value.size <= FILE_SIZE
-          )
-          .test(
-            'fileFormat',
-            'Formato não suportado',
-            value => value && SUPPORTED_FORMATS.includes(value.type)
-          )
-          .required('Upload da carteira de trabalho é obrigatório'),
-        explotation: Yup.mixed()
-          .test(
-            'fileSize',
-            'Tamanho do arquivo não suportado, máximo 4mb',
-            value => value && value.size <= FILE_SIZE
-          )
-          .test(
-            'fileFormat',
-            'Formato não suportado',
-            value => value && SUPPORTED_FORMATS.includes(value.type)
-          )
-          .required('Upload da declaração de aproveitamento é obrigatório'),
-        activities: Yup.mixed()
-          .test(
-            'fileSize',
-            'Tamanho do arquivo não suportado, máximo 4mb',
-            value => value && value.size <= FILE_SIZE
-          )
-          .test(
-            'fileFormat',
-            'Formato não suportado',
-            value => value && SUPPORTED_FORMATS.includes(value.type)
-          )
-          .required('Upload do relatório de atividade é obrigatório')
-      })
+      files: Yup.object().shape(
+        {
+          work: Yup.mixed().when('explotation', {
+            is: val => val === null,
+            then: Yup.mixed()
+              .test(
+                'fileSize',
+                'Tamanho do arquivo não suportado, máximo 1Mb',
+                value => value && value.size <= FILE_SIZE
+              )
+              .test(
+                'fileFormat',
+                'Formato não suportado',
+                value => value && SUPPORTED_FORMATS.includes(value.type)
+              )
+              .required(
+                'Upload da carteira de trabalho ou declaração de aproveitamento é obrigatório'
+              ),
+            otherwise: Yup.mixed()
+              .test(
+                'fileSize',
+                'Tamanho do arquivo não suportado, máximo 1Mb',
+                value => (value ? value.size <= FILE_SIZE : true)
+              )
+              .test('fileFormat', 'Formato não suportado', value =>
+                value ? SUPPORTED_FORMATS.includes(value.type) : true
+              )
+          }),
+          explotation: Yup.mixed().when('work', {
+            is: val => val === null,
+            then: Yup.mixed()
+              .test(
+                'fileSize',
+                'Tamanho do arquivo não suportado, máximo 1Mb',
+                value => value && value.size <= FILE_SIZE
+              )
+              .test(
+                'fileFormat',
+                'Formato não suportado',
+                value => value && SUPPORTED_FORMATS.includes(value.type)
+              )
+              .required(
+                'Upload da carteira de trabalho ou declaração de aproveitamento é obrigatório'
+              ),
+            otherwise: Yup.mixed()
+              .test(
+                'fileSize',
+                'Tamanho do arquivo não suportado, máximo 1Mb',
+                value => (value ? value.size <= FILE_SIZE : true)
+              )
+              .test('fileFormat', 'Formato não suportado', value =>
+                value ? SUPPORTED_FORMATS.includes(value.type) : true
+              )
+          }),
+          activities: Yup.mixed()
+            .test(
+              'fileSize',
+              'Tamanho do arquivo não suportado, máximo 1Mb',
+              value => value && value.size <= FILE_SIZE
+            )
+            .test(
+              'fileFormat',
+              'Formato não suportado',
+              value => value && SUPPORTED_FORMATS.includes(value.type)
+            )
+            .required('Upload do relatório de atividade é obrigatório')
+        },
+        ['work', 'explotation']
+      )
     });
 
   render() {
@@ -79,7 +110,7 @@ class StepDocuments extends Component {
         validationSchema={this.getValidationSchema}
         initialValues={files}
       >
-        {({ setFieldValue, errors, values }) => (
+        {({ setFieldValue, values }) => (
           <Form>
             <Title>Documentação</Title>
             <Row>
@@ -103,15 +134,10 @@ class StepDocuments extends Component {
                       <Document>Carteira de trabalho</Document>
                       <Text>Arraste para cá ou</Text>
                       <Icon src={values.files.work ? Success : Upload} />
-                      {console.log(
-                        errors.files && errors.files.work
-                          ? errors.files.work
-                          : null
-                      )}
                       <Field {...getInputProps()} />
                       <Button>Procure no computador</Button>
                       <Accepted>Arquivos aceitos: pdf, jpg, png, bmp</Accepted>
-                      <Accepted>Máximo: 4MB</Accepted>
+                      <Accepted>Máximo: 1Mb</Accepted>
                     </DragDrop>
                   )}
                 </Dropzone>
@@ -120,7 +146,7 @@ class StepDocuments extends Component {
               <Col>
                 <Dropzone
                   accept="image/jpeg,image/jpg,image/png,image/bmp,application/pdf"
-                  onDrop={([file, ...rest]) => {
+                  onDrop={([file, ...rest], e) => {
                     if (file) {
                       setFieldValue(
                         'files.explotation',
@@ -140,7 +166,7 @@ class StepDocuments extends Component {
                       <Field {...getInputProps()} />
                       <Button>Procure no computador</Button>
                       <Accepted>Arquivos aceitos: pdf, jpg, png, bmp</Accepted>
-                      <Accepted>Máximo: 4MB</Accepted>
+                      <Accepted>Máximo: 1Mb</Accepted>
                     </DragDrop>
                   )}
                 </Dropzone>
@@ -169,7 +195,7 @@ class StepDocuments extends Component {
                       <Field {...getInputProps()} />
                       <Button>Procure no computador</Button>
                       <Accepted>Arquivos aceitos: pdf, jpg, png, bmp</Accepted>
-                      <Accepted>Máximo: 4MB</Accepted>
+                      <Accepted>Máximo: 1Mb</Accepted>
                     </DragDrop>
                   )}
                 </Dropzone>

@@ -12,13 +12,14 @@ import {
   Icon,
   ContentCard,
   FooterCard,
-  FileName
+  FileName,
+  Wrap
 } from './styles';
 import PdfIcon from '../../assets/imgs/pdf.svg';
 import ImageIcon from '../../assets/imgs/imagem.svg';
 import OpenIcon from '../../assets/imgs/abrir.svg';
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${
+pdfjs.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${
   pdfjs.version
 }/pdf.worker.js`;
 
@@ -50,7 +51,9 @@ class Document extends Component {
         </ContentCard>
         <FooterCard>
           <Icon icon={file.type === 'application/pdf' ? PdfIcon : ImageIcon} />
-          <FileName>{file.name}</FileName>
+          <Wrap>
+            <FileName>{file.name}</FileName>
+          </Wrap>
         </FooterCard>
       </Card>
     );

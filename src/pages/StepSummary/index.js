@@ -131,7 +131,7 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
       </Row>
       <Subtitle>Dados da Concedente</Subtitle>
       <Row>
-        <Col>
+        <Col width="46.5%">
           <Data>
             <Item>
               CNPJ{' '}
@@ -201,7 +201,7 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
       </Row>
       <Subtitle>Dados do Professor coordenador</Subtitle>
       <Row>
-        <Col>
+        <Col width="46.5%">
           <Data>
             <Item>
               Nome <Datum>{values.professor.name}</Datum>
@@ -235,7 +235,7 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
       </Row>
       <Subtitle>Dados do Diretor/Coordenador responsável</Subtitle>
       <Row>
-        <Col>
+        <Col width="46.5%">
           <Data>
             <Item>
               Nome <Datum>{values.responsible.name}</Datum>
@@ -269,15 +269,18 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
       </Row>
       <Subtitle>Documentos</Subtitle>
       <Row width="100%">
-        {Object.keys(values.files).map(file => (
-          <Col key={file}>
-            <Document
-              name={dict[file]}
-              document={file}
-              file={values.files[file]}
-            />
-          </Col>
-        ))}
+        {Object.keys(values.files).map(
+          file =>
+            values.files[file] && (
+              <Col key={file} width="30%">
+                <Document
+                  name={dict[file]}
+                  document={file}
+                  file={values.files[file]}
+                />
+              </Col>
+            )
+        )}
       </Row>
       {buttons}
     </Form>
