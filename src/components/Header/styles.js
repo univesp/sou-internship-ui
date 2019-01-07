@@ -28,6 +28,7 @@ const Action = styled.li`
   text-indent: -9999px;
   background-image: url(${props => props.icon});
   background-repeat: no-repeat;
+  background-size: 28px;
   &:not(:last-child) {
     margin-right: 1.5rem;
   }
