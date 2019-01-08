@@ -63,7 +63,8 @@ class Summary extends Component {
         cnpj: '12.321.312/3213-21',
         name: 'daswqdsaqdw',
         phone: ['(12) 3213-21321'],
-        fax: '',
+        fax
+          : '',
         zip: '08110100',
         street: 'Rua Jangaba',
         complement: '',

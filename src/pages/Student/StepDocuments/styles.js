@@ -62,6 +62,7 @@ const Icon = styled.img`
 
 const Error = styled(ErrorMessage)`
   display: inline-block;
+  width: 100%;
   color: var(--zero);
   background-color: var(--red);
   padding: 10px;

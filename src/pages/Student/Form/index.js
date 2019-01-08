@@ -41,6 +41,7 @@ class StudentForm extends Component {
     step: 0,
     values: {
       grantorSelected: {},
+      agree: false,
       personal: {
         firstName: '',
         lastName: '',
@@ -112,7 +113,7 @@ class StudentForm extends Component {
   async componentDidMount() {
     this.toggleLoading();
 
-    const { step, values } =
+    const { step, agree, values } =
       JSON.parse(localStorage.getItem('state')) || this.state;
 
     const resPersonal = await api.get('/student/1');

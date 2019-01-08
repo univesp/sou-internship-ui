@@ -32,6 +32,8 @@ const Col = styled.div`
 `;
 
 const Label = styled.label`
+  position: relative;
+  vertical-align: center;
   font-size: 1rem;
   color: var(--black-lighten);
   span {
@@ -64,4 +66,48 @@ const HorizontalDivider = styled.hr`
   border: none;
 `;
 
-export { Title, Subtitle, Row, Col, Label, MyField, MyMask, HorizontalDivider };
+const Radio = styled.input`
+  display: none;
+`;
+
+const Check = styled.span`
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin: 15px 5px 0 0;
+  cursor: pointer;
+  ${props =>
+    props.checked
+      ? css`
+          background-image: radial-gradient(var(--red) 50%, var(--gray) 50%);
+        `
+      : css`
+          background-color: var(--gray);
+        `}
+`;
+
+const Link = styled.a`
+  color: var(--purple);
+  text-decoration: none;
+`;
+
+const Error = styled.span`
+  display: block;
+  color: var(--red);
+`;
+
+export {
+  Title,
+  Subtitle,
+  Row,
+  Col,
+  Label,
+  MyField,
+  MyMask,
+  HorizontalDivider,
+  Radio,
+  Check,
+  Link,
+  Error
+};
