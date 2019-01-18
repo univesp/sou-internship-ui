@@ -8,6 +8,7 @@ const Image = styled.img`
 const Card = styled.div`
   width: 100%;
   height: 100%;
+  max-width: 350px;
   min-height: 311px;
   box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
@@ -77,6 +78,14 @@ const FileName = styled.p`
   font-weight: bold;
 `;
 
+const Wrap = styled.div`
+  width: 60%;
+  height: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
 export {
   Image,
   Card,
@@ -86,5 +95,6 @@ export {
   Icon,
   ContentCard,
   FooterCard,
-  FileName
+  FileName,
+  Wrap
 };
