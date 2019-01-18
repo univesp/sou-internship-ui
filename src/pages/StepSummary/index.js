@@ -136,19 +136,19 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
             <Item>
               CNPJ{' '}
               <Datum>
-                {values.grantor.cnpj.replace(
+                {values.organization.document_number.replace(
                   /^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2}).*/,
                   '$1.$2.$3/$4-$5'
                 )}
               </Datum>
             </Item>
             <Item>
-              Nome <Datum>{values.grantor.name}</Datum>
+              Nome <Datum>{values.organization.organization_name}</Datum>
             </Item>
             <Item>
               Telefone 1{' '}
               <Datum>
-                {values.grantor.phone[0].replace(
+                {values.organization.phone1.replace(
                   /^(\d{2})(\d{4,5})(\d{4}).*/,
                   '($1) $2-$3'
                 )}
@@ -157,44 +157,42 @@ const StepSummary = ({ handleSubmit, buttons, values }) => (
             <Item>
               Telefone 2
               <Datum>
-                {values.grantor.phone[1] && values.grantor.phone[1]
-                  ? values.grantor.phone[1].replace(
+                {values.organization.phone2.replace(
                       /^(\d{2})(\d{4,5})(\d{4}).*/,
                       '($1) $2-$3'
-                    )
-                  : 'Não informado'}
+                    ) || 'Não informado'}
               </Datum>
             </Item>
             <Item>
               Fax{' '}
               <Datum>
-                {values.grantor.fax.replace(
+                {values.organization.fax.replace(
                   /^(\d{2})(\d{4,5})(\d{4}).*/,
                   '($1) $2-$3'
                 ) || 'Não informado'}
               </Datum>
             </Item>
             <Item>
-              Logradouro <Datum>{values.grantor.street}</Datum>
+              Logradouro <Datum>{values.organization.street}</Datum>
             </Item>
             <Item>
-              Número <Datum>{values.grantor.number}</Datum>
+              Número <Datum>{values.organization.street_number}</Datum>
             </Item>
             <Item>
               CEP{' '}
               <Datum>
-                {values.grantor.zip.replace(/^(\d{5})(\d{3}).*/, '$1-$2')}
+                {values.organization.zipcode.replace(/^(\d{5})(\d{3}).*/, '$1-$2')}
               </Datum>
             </Item>
             <Item>
-              Cidade <Datum>{values.grantor.city}</Datum>
+              Cidade <Datum>{values.organization.city}</Datum>
             </Item>
             <Item>
-              Estado <Datum>{values.grantor.federatedState}</Datum>
+              Estado <Datum>{values.organization.state}</Datum>
             </Item>
             <Item>
               Complemento
-              <Datum>{values.grantor.complement || 'Não possui'}</Datum>
+              <Datum>{values.organization.complement || 'Não possui'}</Datum>
             </Item>
           </Data>
         </Col>
